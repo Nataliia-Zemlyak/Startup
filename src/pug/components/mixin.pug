@@ -1,0 +1,82 @@
+- 
+    let mainMenu = [
+        {
+            name: "Home" , 
+            url: "#"
+        },
+        {
+            name: "Services" , 
+            url: "#"
+        },
+        {
+            name: " About" , 
+            url: "#"
+        },
+        {
+            name: "Works" , 
+            url: "#"
+        },
+        {
+            name: "Blog" , 
+            url: "#"
+        },
+        {
+            name: "Clients" , 
+            url: "#"
+        },
+        {
+            name: "Contact" , 
+            url: "#"
+        },
+    ] 
+
+
+
+mixin menu (items, myclass) 
+    for item in items 
+        li 
+            a(href=item.url) #{item.name}
+
+-
+    let aboutPeople = {
+        KhalilUddin: {
+            src: "img/uddin",
+            alt: "Khalil Uddin",
+            employeeName: "Md. Khalil Uddin",
+            description: "Head of Ideas"
+        },
+        RubelMiah: {
+            src:"img/rubel",
+            alt:"Rubel Miah",
+            employeeName: "Rubel Miah",
+            description: "Lead WordPress Developer"
+        },
+        ShamimMia: {
+            src:"img/shamim",
+            alt:"Shamim Mia",
+            employeeName: "Shamim Mia",
+            description: "Sr. Web Developer"
+        },
+        JohnDoe: {
+            src:"img/john",
+            alt:"John Doe",
+            employeeName: "John Doe",
+            description: "Front-end Developer"
+        }
+    }
+
+mixin aboutCard (item)
+    figure
+        figcaption.about-card
+            .about-img
+                picture 
+                    source(srcset=item.src + ".webp", tipe="image/webp")
+                    img(src=item.src + ".png", alt=item.alt)
+                //- .employee-social.flex
+                //-     a.fb(href="#") 
+                //-     a.tw(href="#") 
+                //-     a.gg(href="#")
+                //-     a.in(href="#")
+            .description-card._anim-items
+                p.employee-name #{item.employeeName}
+                p.description.roboto #{item.description}

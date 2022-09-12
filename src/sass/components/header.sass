@@ -1,0 +1,104 @@
+.header
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) center / 130% auto
+    background-size: center
+    height: 770rem
+
+.top 
+    justify-content: space-between
+    align-items: center
+.logo 
+    a
+        padding-left: 30rem
+        font-size: 24rem
+        color: #ffffff
+        font-weight: 700
+        font-family: "Montserrat"
+        transition: all .3s ease
+        &:hover
+            color: #c0301c
+
+.top-menu 
+    font-size: 14rem
+    line-height: 24rem
+    color: #ffffff
+    font-family: "Montserrat"
+    
+    li
+        a 
+            color: #ffffff
+            padding: 15rem 20rem
+            position: relative
+            &::before
+                content: ""
+                position: absolute
+                bottom: 0
+                left: 0
+                width: 100%
+                height: 2rem
+                background-color: transparent
+            &:hover::before
+                background-color: #fff
+.welcomStartup
+    pointer-events: none
+    padding-top: 40rem
+    text-align: center
+    h1
+        margin: 0
+        padding-top: 260rem
+        padding-bottom: 10rem
+        font-size: 48rem
+        text-transform: uppercase
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+    p 
+        margin: 0
+        padding-top: 0
+        padding-bottom: 50rem
+        font-size: 24rem
+        color: #ffffff
+        font-family: "Montserrat"
+.navmenu
+    display: none
+    +media(1030)
+        display: flex
+        position: relative   
+        flex-direction: row
+        top: 0      
+        background: transparent
+.hamburger
+    height: 50px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    +media(1030)
+        display: none
+    span
+        margin: 4px 0
+        width: 35px
+        height: 3px
+        background-color: #fff
+        border-radius: 5px
+
+
+.active-burger 
+    display: inline-block
+    position: absolute
+    flex-direction: column
+    text-align: center
+    top: 100px
+    left: 0
+    right: 0
+    background: #8f2416
+    background-size: cover
+    
+    z-index: 2
+    +media(700)
+        top: 115px
+    ul
+        flex-direction: column
+        align-items: center
+    li
+        a
+            display: inline-block
+            padding: 20px 30px

@@ -1,0 +1,26 @@
+=btn ($color) 
+    display: inline-block
+    padding: 10rem 25rem
+    border: 2px solid #ffffff
+    text-decoration: none
+    font-size: 16px
+    line-height: 24px
+    text-transform: uppercase
+    color: #ffffff
+    font-weight: 400
+    font-family: "Montserrat"
+    text-align: center
+    transition: background-color .3s ease
+    pointer-events: all
+    @if $color == "white" 
+       
+        background-color: rgba(110,69,226,0)
+        border: 2px solid #ffffff
+        &:hover 
+            color: #c0301c
+            background-color: #fff
+    
+
+=media ($size)
+    @media screen and ( min-width: #{$size}px)
+        @content
