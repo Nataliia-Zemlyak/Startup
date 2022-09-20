@@ -4,12 +4,12 @@
     background-color: #f9fafc
 .main 
     h2 
+        position: relative
         padding-top: 10rem
         padding-bottom: 20rem
         font-size: 20rem
         text-transform: uppercase
         color: #555555
-        font-weight: 400
         font-family: "Montserrat"
         text-align: center
         &::before
@@ -18,9 +18,10 @@
             width: 50rem
             height: 2rem
             background-color: #555
-            bottom: -20rem
+            bottom: -14%
             left: 50%
             transform: translate(-50%,-50%)
+            box-sizing: border-box
     p 
         padding-top: 30rem
         font-size: 16rem
@@ -30,6 +31,7 @@
         text-align: center
 
 .card-service
+    justify-content: space-between
     padding-top: 30rem
 .personal
     text-align: center
@@ -66,42 +68,126 @@
         fill: #c0301c
 //about-us            
 
-.about-us 
+.about-us-bcg
     background-color: #f8f8f8
+.about-us
     h3
+        position: relative
         margin: 0
         padding-top: 100rem
         font-size: 20rem
         text-transform: uppercase
         color: #555555
-        font-weight: 400
         font-family: "Montserrat"
         text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -19%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
     p 
+        padding-top: 30rem
+        margin: 10rem
         font-size: 16rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
 .description
+    justify-content: space-between
     p
+        max-width: 555rem
         font-size: 14rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: left
-.about-card 
-    margin: 0  
+.slider-card
+    justify-content: space-between
+    width: 100%
+
+.about-card
+    position: relative
+    padding-top: 20rem
+    padding-bottom: 20rem
+    text-align: center
+    h3
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Myriad Pro"
+    p 
+        font-size: 13rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+     
+    figure
+        margin: 0
+.slider-card,
+.cards 
+    position: absolute
+
+.cards-slider
+    position: absolute
+    width: 35rem
+    height: 38rem
+    top: 40%
+    transform: translateY(-50%)
+    background-color: rgba(#555, 0.2)
+    transition: all .3s ease
+    z-index: 2
+    cursor: pointer
+    &:hover
+        background-color: #c0301c
+    &::before
+        content: ""
+        position: absolute
+        width: 10px
+        height: 10px
+        border-right: 2px solid #ddd
+        border-bottom: 2px solid #ddd
+        border-radius: 1px
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(135deg)
+        z-index: 3
+
+.right
+    right: 0
+    &::before
+        transform: translate(-50%, -50%) rotate(-45deg)
 
 //latest works
 .latest-works
+    padding-top: 50rem
     h2
+        margin: 0
+        padding-bottom: 30rem
+        position: relative
         font-size: 20rem
         text-transform: uppercase
         color: #555555
-        font-weight: 400
         font-family: "Montserrat"
         text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+
+.latest-catalogy
+    justify-content: center
+    padding: 28rem 0 70rem    
     a 
         padding-left: 20rem
         font-size: 16rem
@@ -111,11 +197,82 @@
         text-align: center
         &:hover
             color: #c0301c
+.latest-card
+    padding-bottom: 100rem
+    display: grid
+    gap: 30rem
+    grid-template-columns: repeat(3, 1fr)
+    a 
+        width: 360rem
+        height: 320rem
+.hair
+    text-align: center
+    font-size: 18px
+    color: #ffffff
+    font-weight: 400
+    font-family: "Montserrat"
+    opacity: 0
+    &:hover
+        opacity: 1
+.branding
+    text-align: center
+    font-size: 12px
+    color: #ffffff
+    font-weight: 400
+    font-family: "Roboto Slab"
+    opacity: 0
+    &:hover
+        opacity: 1
 
+.one
+    background: url(../img/1.jpg)
+    // &::before
+    //     position: absolute
+    //     content: "Hair Dresser"
+
+        
+    &:hover
+        opacity: 1
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/1.jpg)
+.two
+    background: url(../img/2.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/2.jpg)
+.three
+    background: url(../img/3.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/3.jpg)
+.four
+    background: url(../img/4.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/4.jpg)
+.five
+    background: url(../img/5.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/5.jpg)
+.six
+    background: url(../img/6.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/6.jpg)
+.seven
+    background: url(../img/7.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/7.jpg)
+.eight
+    background: url(../img/8.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/8.jpg)
+.nine
+    background: url(../img/9.jpg)
+    &:hover
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/9.jpg)
+
+ 
+    
 .get-in-touch
     text-align: center
     padding: 100rem 0
-    background: linear-gradient(rgba(#c0301c,0.45), rgba(#c0301c,0.45)) url(../img/project.png) center / 150% auto
+    background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)),  url(../img/project.png)
     p 
         pointer-events: none
         font-size: 30rem
@@ -124,3 +281,269 @@
         
     a 
         align-items: center
+
+//Recent blog posts
+.recent-blog
+    padding-top: 100rem
+.title-blog
+    h2
+        position: relative
+        padding-bottom: 20rem
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Montserrat"
+        text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+    h5
+        padding-top: 15rem
+        font-size: 16rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+        
+
+.blog-post
+    cursor: pointer
+    transition: all .3s ease
+    &:hover .sub-name-post span,
+    &:hover .name-post p,
+    &:hover .button-more
+        color: #c0301c
+        
+        
+  
+.blog-startup
+    padding-top: 50rem
+    padding-bottom: 25rem
+    
+.blog-user
+    padding-top: 25rem
+    padding-bottom: 100rem
+    
+.blog-img
+    margin-right: 40rem
+    max-width: 460rem
+    img
+        width: 100%
+.data-blog-post
+    justify-content: flex-start
+.data-post
+    margin-right: 20rem
+    border: 2px solid #555555
+    width: 77rem
+    height: 77rem
+    text-align: center
+    font-size: 24rem
+    letter-spacing: 2rem
+    font-weight: 700
+    text-transform: uppercase
+    color: #777777
+    p 
+        margin: 0
+        padding: 9rem 0rem 0rem 3rem
+
+.name-post
+    
+    p
+        margin: 0
+        padding: 7rem
+        font-size: 16rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+    i
+        padding: 7rem
+        font-size: 13px
+        color: #777777
+        font-weight: 400
+        font-family: "Roboto Slab"
+
+.text-info
+    max-width: 635rem
+    padding: 20rem 0 34rem 0
+    text-align: left
+    font-size: 14rem
+    color: #555555
+    font-weight: 400
+    font-family: "Roboto Slab"
+
+.button-more
+    font-size: 13px
+    letter-spacing: 1px
+    text-transform: uppercase
+    color: #777777
+    font-weight: 700
+    font-family: "Roboto Slab"
+    
+hr
+    background-color: #dddddd
+
+//brands
+.brands
+    background-color: #f8f8f8
+    text-align: center
+.title-brands
+    padding-top: 50rem
+    margin-bottom: 65rem
+    justify-content: center
+    align-items: center
+    a
+        margin: 0 30rem
+.quotes
+    margin: 0 auto
+    max-width: 760rem
+    i,
+    p
+        margin: 0
+        font-size: 18rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+    .name-author
+        padding-top: 20rem
+        padding-bottom: 50rem
+
+//form
+
+.title-form 
+    text-align: center
+    padding-top: 50rem
+    h2
+        padding-bottom: 30rem
+        margin: 0
+        position: relative
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Montserrat"
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: 0
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+    p 
+        font-size: 16rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+.address
+    text-align: left
+    h4
+        font-size: 14px
+        text-transform: uppercase
+        color: #555555
+        font-family: "Myriad Pro"
+    p
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+    .contact-adress
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Myriad Pro"
+.tel-hotline
+    text-align: left
+    h4
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Montserrat"
+    a
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+.mail
+    text-align: left
+    h4
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Montserrat"
+        
+    .contact-descr
+        a
+            font-size: 12rem
+            color: #555555
+            font-weight: 400
+            font-family: "Roboto Slab"
+form 
+    flex-direction: column
+    margin-bottom: 50rem
+.contact-form
+    input,
+    textarea
+        margin: 10rem 15rem
+        padding: 10rem 15rem
+        text-transform: uppercase
+        border: 1px solid #555555
+        outline: none
+        &:active
+            outline: none
+        &:focus
+            outline: none
+        &:focus-visible
+            border: 1px solid #c0301c
+        
+.name-mail
+    width: 730rem
+    input
+        width: 50%
+.phone-number 
+    width: 730rem
+    input
+        width: 50%
+.your-message
+    textarea 
+        font-size: 12px
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        resize: vertical
+        min-height: 40px
+        max-height: 250px
+        width: 91.5%
+.mpex
+    padding-top: 50rem
+    justify-content: space-between
+.send-message
+    align-items: center
+    input
+        font-size: 12px
+        letter-spacing: 1px
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        background-color: #ffffff
+        cursor: pointer
+        &:hover
+            background: #c0301c
+            border-color: #c0301c
+            color: #fff
+    span
+        color: #c0301c
+        font-size: 14rem
+        padding-right: 5rem
+        

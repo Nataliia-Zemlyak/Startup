@@ -1,7 +1,10 @@
+
+
 .header
-    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/parallaxBG.jpg) center / 130% auto
-    background-size: center
     height: 770rem
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/header.jpg) 
+    transition: background-position .2s ease
+    position: relative
 
 .top 
     justify-content: space-between
@@ -39,9 +42,15 @@
             &:hover::before
                 background-color: #fff
 .welcomStartup
+    position: absolute
     pointer-events: none
     padding-top: 40rem
     text-align: center
+    top: 50%
+    left: 50%
+    opacity: 0
+    transform: translate(50%, 0)
+    transition: all 1.5s ease
     h1
         margin: 0
         padding-top: 260rem
@@ -58,6 +67,9 @@
         font-size: 24rem
         color: #ffffff
         font-family: "Montserrat"
+.welcomStartup._active-anim
+    transform: translate(-50%, -50%)
+    opacity: 1
 .navmenu
     display: none
     +media(1030)

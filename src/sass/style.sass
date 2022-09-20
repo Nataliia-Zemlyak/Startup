@@ -1,6 +1,7 @@
 @import components/mixin
 html
     font-size: 1px
+    
 body 
     font-family: 'Montserrat', Roboto Slab, sans-serif
     margin: 0
@@ -9,15 +10,18 @@ body
     overflow-x: hidden
 .wrapper
     margin: 0 auto
+    width: 90%
+    +media(1200)
+        max-width: 1140rem
     
 .flex 
     display: flex
-    justify-content: center
 ul 
     align-items: center
     list-style: none  
     padding-left: 0 
 a 
+    display: inline-block
     list-style: none
     text-decoration: none 
 .white
