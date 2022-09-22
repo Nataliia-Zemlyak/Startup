@@ -45,18 +45,14 @@ window.onload = function(){
     
     timeInSite = ((new Date() - new Date (localStorage.lastVisit)) / 1000 / 60)
 
-    firstTimeInSite = ((new Date() - new Date (localStorage.firstVisit)) / 1000 / 60)
-    console.log(firstTimeInSite)
-    
-    if (firstTimeInSite <= 5) {
+    if (timeInSite <= 5) {
         console.log ("З поверненням")
-    } else if (firstTimeInSite > 5 && firstTimeInSite <= 60){
+    } else if (timeInSite > 1440){
         console.log("Вітаємо знову на нашому сайті")
-    } else if (firstTimeInSite > 1440){
+    } else if (timeInSite > 2880){
         console.log("З поверненням")
     }
     
-
     window.onblur = function () {
         localStorage.lastVisit = new Date () 
         
@@ -194,17 +190,151 @@ if (animItems.length > 0) {
 
 //slider
 
-// function infinitySlider () {
-//     let slider = document.querySelector(".slider-card"),
-//         cards = document.querySelectorAll(".cards"),
-//         btnLeft = document.querySelector(".cards-slider.left"),
-//         btnRight = document.querySelector(".cards-slider.right"),
-//         heightCards = cards[0].getBoundingClientRect().height,
-//         widthCards = cards[0].getBoundingClientRect().width,
-//         sliderWidth = slider.getBoundingClientRect().width,
-//         cardsCount = Math.floor(sliderWidth / widthCards),
-//         distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
+let positionCards = 0,
+    cards = document.querySelectorAll(".cards"),
+    slider = document.querySelector(".slider-card"),
+    sliderWidth = slider.getBoundingClientRect().width,
+    widthCards = cards[0].getBoundingClientRect().width,
+    cardsCount = Math.floor(sliderWidth / widthCards),
+    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1),
+    btnLeft = document.querySelector(".cards-slider.left"),
+    btnRight = document.querySelector(".cards-slider.right")
+    
 
+    if (cards.length > cardsCount) {
+        positionCards -= (distanceCards + widthCards)
+        let firstEl = cards[cards.length - 1].cloneNode(true)
+        slider.insertAdjacentElement("afterbegin", firstEl)
+    } 
+
+function infinitySlider () {
+    let heightCards = cards[0].getBoundingClientRect().height
+
+    cards = document.querySelectorAll(".cards")
+    widthCards = cards[0].getBoundingClientRect().width
+    sliderWidth = slider.getBoundingClientRect().width
+    cardsCount = Math.floor(sliderWidth / widthCards)
+    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
+        
+    slider.style.height = heightCards + 'px'
+        
+    if (cards.length > cardsCount) {
+        positionCards -= (distanceCards + widthCards)
+        
+    } 
+        
+    function shuffleCard () {
+        positionCards = 0
+        if (cards.length > cardsCount) {
+            positionCards -= (distanceCards + widthCards)
+            btnLeft.style.display = "block"
+            btnRight.style.display = "block"
+        } else {
+            btnLeft.style.display = "none"
+            btnRight.style.display = "none"
+        }
+
+        cards = document.querySelectorAll(".cards")
+        cards.forEach(card => {
+            card.style.left = positionCards + 'px'
+            positionCards += (distanceCards + widthCards)
+        })
+}
+shuffleCard()
+
+    function changeSlide (direction) {
+        if (direction == "left") {
+            cards[cards.length - 1].remove()
+            let preLastEl = cards[cards.length - 2].cloneNode(true)
+            slider.insertAdjacentElement("afterbegin", preLastEl)
+        } else if (direction == "right") {
+            cards[0].remove()
+            let preFirstEl = cards[1].cloneNode(true)
+            slider.insertAdjacentElement("beforeend", preFirstEl)
+        }
+        shuffleCard()
+    }
+    btnLeft.onclick = function () {
+        changeSlide("left")
+    }
+    btnRight.onclick = function () {
+        changeSlide("right")
+    }
+}
+
+window.onresize = infinitySlider 
+infinitySlider ()
+
+
+
+
+
+
+// let offs = 0,
+//     step = 0
+//     slider = document.querySelector(".slider-card").offsetWidth,
+//     btnLeft = document.querySelector(".cards-slider.left"),
+//     btnRight = document.querySelector(".cards-slider.right"),
+//     cards = document.querySelectorAll(".cards")
+//     sliders = []
+// for (let i = 0; i< cards.length; i++) {
+//     sliders[i] = cards[i]
+//     cards[i]
+//     //console.log(sliderCard[i])
+//     }
+    
+// function drawLeft(){
+//     let slide = document.createElement('div')
+    
+//     slide.classList.add('cards')
+//     slide.appendChild(sliders[step])
+//     slide.style.left = offs * slider + 'px'
+//     document.querySelector(".slider-card").appendChild(slide)
+    
+//     if (step + 1 == cards.length){
+//         step = 0
+//     } else {
+//         step++
+//     }
+//     offs = 1
 // }
-// window.onresize = infinitySlider ()
+// drawLeft()
 
+// function left() {
+//     btnLeft.removeEventListener('click', left)
+    
+//     let sliderLeft = document.querySelectorAll('.cards')
+//     let offsetLeft = 0
+    
+//     for (let i = 0; i < sliderLeft.length; i++) {
+//         sliderLeft[i].style.left = offsetLeft * slider -slider + 'px'
+//         offsetLeft++
+//     }
+//     setTimeout(function() {
+//         sliderLeft[0].remove()
+//         drawLeft()
+//         btnLeft.addEventListener('click', left)
+//     }, 1000)  
+// }
+
+
+// btnLeft.addEventListener('click', left)
+
+
+
+
+// document.querySelector(".cards-slider.left").addEventListener('click', function() {
+//     offs += 263
+//     if(offs > 1140) {
+//         offs = 0
+//     }
+//     slider.style.left = -offs + 'px'
+// })
+
+// document.querySelector(".cards-slider.right").addEventListener('click', function() {
+//     offs -= 263
+//     if(offs < 0) {
+//         offs = 1052
+//     }
+//     slider.style.left = -offs + 'px'
+// })

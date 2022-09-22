@@ -46,6 +46,8 @@ section.about-us-bcg#about
                 +aboutCard (aboutPeople.ShamimMia)
             .cards
                 +aboutCard (aboutPeople.JohnDoe)
+            //- .cards.last
+            //-     +aboutCard (aboutPeople.RubelMiah)
         span.cards-slider.right
         //- .about-card
         //-     +aboutCard (aboutPeople.RubelMiah)
@@ -101,7 +103,7 @@ section.form#contact
         h2 Get in touch
         p Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
         .mpex.flex
-            .contact-info
+            .contact-info.flex
                 .address
                     h4.contact-adress Address
                     p 312, 7th Ave, New York 
@@ -131,5 +133,4 @@ section.form#contact
                         textarea(name="message", rows="6", placeholder="Write your message") Write your message
                     .send-message.flex
                         input(type="submit", value="Send message")
-                        span * 
                         p We’ll contact you as as possible. We don’t reply on Monday.

@@ -72,11 +72,11 @@ mixin aboutCard (item)
                 picture 
                     source(srcset=item.src + ".webp", tipe="image/webp")
                     img(src=item.src + ".png", alt=item.alt)
-                //- .employee-social.flex
-                //-     a.fb(href="#") 
-                //-     a.tw(href="#") 
-                //-     a.gg(href="#")
-                //-     a.in(href="#")
+                .people-social.flex
+                    a.fb(href="#") 
+                    a.tw(href="#") 
+                    a.gg(href="#")
+                    a.in(href="#")
             .description-card._anim-items
                 h3.employee-name #{item.employeeName}
                 p.description.roboto #{item.description}
