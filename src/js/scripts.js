@@ -195,38 +195,44 @@ let positionCards = 0,
     slider = document.querySelector(".slider-card"),
     sliderWidth = slider.getBoundingClientRect().width,
     widthCards = cards[0].getBoundingClientRect().width,
-    cardsCount = Math.floor(sliderWidth / widthCards),
-    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1),
+    constCardWidth = widthCards,
+    cardsCount = Math.floor(sliderWidth / constCardWidth),
+    distanceCards = (cardsCount == 1) ? 20 : (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1),
     btnLeft = document.querySelector(".cards-slider.left"),
-    btnRight = document.querySelector(".cards-slider.right")
-    
-
-    if (cards.length > cardsCount) {
-        positionCards -= (distanceCards + widthCards)
-        let firstEl = cards[cards.length - 1].cloneNode(true)
-        slider.insertAdjacentElement("afterbegin", firstEl)
-    } 
+    btnRight = document.querySelector(".cards-slider.right"),
+    firstEl = cards[cards.length - 1].cloneNode(true)
+slider.insertAdjacentElement("afterbegin", firstEl)
+positionCards = 0 - (distanceCards + widthCards)
+   
 
 function infinitySlider () {
-    let heightCards = cards[0].getBoundingClientRect().height
-
+    
     cards = document.querySelectorAll(".cards")
-    widthCards = cards[0].getBoundingClientRect().width
     sliderWidth = slider.getBoundingClientRect().width
-    cardsCount = Math.floor(sliderWidth / widthCards)
-    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
-        
+    cardsCount = Math.floor(sliderWidth / constCardWidth)
+    let heightCards = cards[0].getBoundingClientRect().height
     slider.style.height = heightCards + 'px'
-        
-    if (cards.length > cardsCount) {
-        positionCards -= (distanceCards + widthCards)
-        
-    } 
-        
+    
+    cards.forEach(card => {
+        if(cardsCount == 1){
+            card.style.width = 100 + '%'
+        } else if(cardsCount == 2){
+            card.style.width = 45 + '%'
+        } else if(cardsCount == 3){
+            card.style.width = 31 + '%'
+        } else {
+            card.style.width = 'auto'
+        }
+    })  
+    
+    console.log(heightCards)
+    widthCards = cards[0].getBoundingClientRect().width
+    
+    distanceCards = (cardsCount == 1) ? 20 : (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
+    
     function shuffleCard () {
-        positionCards = 0
-        if (cards.length > cardsCount) {
-            positionCards -= (distanceCards + widthCards)
+        positionCards = 0 - (distanceCards + widthCards)
+        if (cards.length - 1 > cardsCount) {
             btnLeft.style.display = "block"
             btnRight.style.display = "block"
         } else {
@@ -238,9 +244,10 @@ function infinitySlider () {
         cards.forEach(card => {
             card.style.left = positionCards + 'px'
             positionCards += (distanceCards + widthCards)
+           
         })
-}
-shuffleCard()
+    }
+    shuffleCard()
 
     function changeSlide (direction) {
         if (direction == "left") {
