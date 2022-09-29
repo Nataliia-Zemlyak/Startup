@@ -151,15 +151,16 @@
         margin: 0
     
 .cards 
-    transition: all .3s ease
+    //transition: all .3s ease
     position: absolute
-    width: 100%
-    max-width: 546rem
-    min-width: 263rem
+    // width: 100%
+    // max-width: 546rem
+    // min-width: 263rem
     img 
         width: 100%
-    +media(530)
-        width: auto
+        min-height: 256rem
+    // +media(530)
+    //     width: auto
         
     
 
@@ -198,7 +199,7 @@
     position: relative
 
 .people-social
-    //display: none
+    
     display: block
     position: absolute
     // width: 100%
@@ -358,6 +359,9 @@
     text-align: center
     padding: 100rem 0
     background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)),  url(../img/project.png)
+    background-size: auto 100%
+    +media(768)
+        background-size: 130% auto
     p 
         pointer-events: none
         font-size: 30rem
@@ -561,13 +565,21 @@ hr
 .contact-info 
     text-align: center
     flex-direction: column
+    
     +media(768)
         text-align: left
        
 
 .address
+    position: relative
+    background: url(../img/sprite2.png) no-repeat
     
+
     h4
+        background-position: -199px -1px
+        width: 12px
+        height: 17px
+        position: absolute
         font-size: 14px
         text-transform: uppercase
         color: #555555
@@ -580,8 +592,14 @@ hr
         font-family: "Roboto Slab"
     
 .tel-hotline
-  
+    position: relative
+    background: url(../img/sprite2.png) no-repeat
     h4
+        position: absolute
+        background-position: -226px -1px
+
+        width: 12px
+        height: 20px
         font-size: 14rem
         text-transform: uppercase
         color: #555555
@@ -592,8 +610,11 @@ hr
         font-weight: 400
         font-family: "Roboto Slab"
 .mail
-    
+    position: relative
+    background: url(../img/sprite2.png) no-repeat
     h4
+        background-position: -168px -7px
+
         font-size: 14rem
         text-transform: uppercase
         color: #555555

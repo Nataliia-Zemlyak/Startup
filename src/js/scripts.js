@@ -20,8 +20,7 @@ function moveBackground(e) {
 
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = `center`
-    element.style.backgroundSize = `130% auto`
-
+    //element.style.backgroundSize = `130% auto`
     element.addEventListener("mousemove", function (e) { moveBackground(e); })
 })
 
@@ -101,7 +100,7 @@ function scrollToBlock(href){
             clearInterval(interval)
 
         }
-        console.log (pixelScroll)
+        //console.log (pixelScroll)
     },20)
 }
 
@@ -146,6 +145,8 @@ function changeTex (){
 //     })
 //     //}
 // })
+
+
 // animation
 
 
@@ -189,75 +190,101 @@ if (animItems.length > 0) {
 
 
 //slider
+// function $(selector){
+//     let elem = document.querySelectorAll(selector)
+//     if(elem.length == 1){
+//         return elem[0]
+//     }
+//     return elem
+// }
 
-let positionCards = 0,
-    cards = document.querySelectorAll(".cards"),
-    slider = document.querySelector(".slider-card"),
-    sliderWidth = slider.getBoundingClientRect().width,
-    widthCards = cards[0].getBoundingClientRect().width,
-    constCardWidth = widthCards,
-    cardsCount = Math.floor(sliderWidth / constCardWidth),
-    distanceCards = (cardsCount == 1) ? 20 : (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1),
-    btnLeft = document.querySelector(".cards-slider.left"),
-    btnRight = document.querySelector(".cards-slider.right"),
-    firstEl = cards[cards.length - 1].cloneNode(true)
-slider.insertAdjacentElement("afterbegin", firstEl)
-positionCards = 0 - (distanceCards + widthCards)
-   
 
-function infinitySlider () {
+function infinitySlider (selector, settings)  { //селектор шлях до слайдера а сетінгс не стандартні налаштування
     
-    cards = document.querySelectorAll(".cards")
-    sliderWidth = slider.getBoundingClientRect().width
+    let positionCards = 0,
+        slider = document.querySelector(selector),
+        sliderCard = slider.querySelector(".slider-card"),
+        sliderWidth = sliderCard.getBoundingClientRect().width,
+        cards = sliderCard.children,
+        widthCards,
+        distanceCards,
+        cloneCard,
+        heightCards,
+        constCardWidth,
+        cardsCount,
+        btnLeft = slider.querySelector(".sliderBtn.left"),
+        btnRight = slider.querySelector(".sliderBtn.right"),
+        defoltSettings =  {
+            slidetoshow: 1,
+            slidetoscroll: 1,
+            gap: 20, //vidstan
+            arrows: true, //strilochka
+            autoplay: true,
+            autoplayspeed: 3000,
+            responsive: []
+        } 
+    if(localStorage.constCardWidth){
+        constCardWidth = localStorage.constCardWidth
+    } else {
+        constCardWidth = cards[0].getBoundingClientRect().width
+        localStorage.constCardWidth = constCardWidth
+    }
+
     cardsCount = Math.floor(sliderWidth / constCardWidth)
-    let heightCards = cards[0].getBoundingClientRect().height
-    slider.style.height = heightCards + 'px'
+    slider.querySelectorAll(".clone").forEach(clone => {
+        clone.remove()
+    })      
+    // let connect = Object.assign(settings, defoltSettings)
+        
+    settings = {...defoltSettings, ...settings} //берем всі аргументи обох об'єктів і сетінгс в кінці щоб перекрити елементи яких не вистачає
     
-    cards.forEach(card => {
-        if(cardsCount == 1){
-            card.style.width = 100 + '%'
-        } else if(cardsCount == 2){
-            card.style.width = 45 + '%'
-        } else if(cardsCount == 3){
-            card.style.width = 31 + '%'
-        } else {
-            card.style.width = 'auto'
-        }
-    })  
+    distanceCards = settings.gap
+    widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
+    positionCards = 0 - (distanceCards + widthCards)
     
+    for(let i = 1; i <= settings.slidetoscroll; i++){
+        cloneCard = cards[cards.length - i].cloneNode(true)
+        cloneCard.classList.add("clone")
+        sliderCard.insertAdjacentElement("afterbegin", cloneCard)
+    }
+    cards = sliderCard.children
+    //console.log(cards)
+
+    for(let i = 0; i < cards.length; i++){
+        cards[i].style.width = widthCards + 'px'
+    }
+
+    heightCards = cards[0].getBoundingClientRect().height
+    sliderCard.style.height = heightCards + 'px'
     console.log(heightCards)
-    widthCards = cards[0].getBoundingClientRect().width
-    
-    distanceCards = (cardsCount == 1) ? 20 : (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
     
     function shuffleCard () {
         positionCards = 0 - (distanceCards + widthCards)
-        if (cards.length - 1 > cardsCount) {
+        if(!settings.arrows || (cards.length - 1) <= cardsCount ){
+            btnLeft.style.display = "none"
+            btnRight.style.display = "none"  
+        } else {
             btnLeft.style.display = "block"
             btnRight.style.display = "block"
-        } else {
-            btnLeft.style.display = "none"
-            btnRight.style.display = "none"
         }
-
-        cards = document.querySelectorAll(".cards")
-        cards.forEach(card => {
-            card.style.left = positionCards + 'px'
+        for(let i = 0; i < cards.length; i++){
+            cards[i].style.left = positionCards + 'px'
             positionCards += (distanceCards + widthCards)
-           
-        })
+        }
     }
+    
+        
     shuffleCard()
 
     function changeSlide (direction) {
         if (direction == "left") {
             cards[cards.length - 1].remove()
-            let preLastEl = cards[cards.length - 2].cloneNode(true)
-            slider.insertAdjacentElement("afterbegin", preLastEl)
+            let preLastEl = cards[cards.length - 1].cloneNode(true)
+            sliderCard.insertAdjacentElement("afterbegin", preLastEl)
         } else if (direction == "right") {
             cards[0].remove()
-            let preFirstEl = cards[1].cloneNode(true)
-            slider.insertAdjacentElement("beforeend", preFirstEl)
+            let preFirstEl = cards[0].cloneNode(true)
+            sliderCard.insertAdjacentElement("beforeend", preFirstEl)
         }
         shuffleCard()
     }
@@ -269,10 +296,71 @@ function infinitySlider () {
     }
 }
 
-window.onresize = infinitySlider 
-infinitySlider ()
+window.onresize = function(){
+    infinitySlider (".slider", {
+        responsive: [
+            {
+                breakpoint: 625,
+                slidetoshow: 2,
+                slidetoscroll: 1,
+                arrows: true
+            }, 
+            {
+                breakpoint: 912,
+                slidetoshow: 3,
+                slidetoscroll: 1,
+                arrows: true  
+            },
+            {
+                breakpoint: 1196,
+                slidetoshow: 4,
+                slidetoscroll: 1,
+                arrows: true  
+            },
+           
+        ]
+    })
+}
 
 
+infinitySlider(".slider", {
+    responsive: [
+        {
+            breakpoint: 625,
+            slidetoshow: 2,
+            slidetoscroll: 1,
+            arrows: true
+        }, 
+        {
+            breakpoint: 912,
+            slidetoshow: 3,
+            slidetoscroll: 1,
+            arrows: true  
+        },
+        {
+            breakpoint: 1196,
+            slidetoshow: 4,
+            slidetoscroll: 1,
+            arrows: true  
+        },
+       
+    ]
+})
+
+
+
+
+
+
+//jQwery
+// function $(selector){
+//     let elem = document.querySelectorAll(selector)
+//     if(elem.length == 1){
+//         return elem[0]
+//     }
+//     return elem
+// }
+    //$('.slider').forEach
 
 
 
