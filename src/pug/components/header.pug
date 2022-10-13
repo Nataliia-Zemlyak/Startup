@@ -1,16 +1,17 @@
 section.one
-    .header.parallax
-        .top.flex.wrapper
-            .logo.flex
-                a(href="index.html") Startup 
-            .hamburger 
-                span 
-                span 
-                span
-                
-            nav.navmenu.flex
-                ul.top-menu.flex#menu
-                    +menu(mainMenu) 
+    .header.parallax(data-bg="lazy.jpg")
+        .header-section
+            .top.flex.wrapper
+                .logo.flex
+                    a(href="index.html") Startup 
+                .hamburger 
+                    span 
+                    span 
+                    span
+                    
+                nav.navmenu.flex
+                    ul.top-menu.flex#menu
+                        +menu(mainMenu) 
         
         .welcomStartup.wrapper._anim-start._anim-no
             h1 Welcome to STARTUP

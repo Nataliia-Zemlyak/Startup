@@ -27,7 +27,72 @@ a
 .white
     +btn('white')
 
+//popup
+.popup
+    position: fixed
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, .8)
+    top: 0
+    left: 0
+    opacity: 0
+    visibility: hidden
+    overflow-x: hidden
+    overflow-y: auto
+    transition: all .5s ease
+    z-index: 10
 
+.popup.open
+    opacity: 1
+    visibility: visible
+
+
+.popup.open .popup-content
+    transform: translate(0, 0)
+    opacity: 1
+
+
+.popup-body 
+    min-height: 100%
+    padding: 30rem 10rem
+    display: flex
+    align-items: center
+    justify-content: center
+
+.popup-content
+    position: relative
+    padding: 10rem
+    background-color: #fff
+    border-radius: 3rem
+    transition: all .5s ease
+    opacity: 0
+    transform: translateY(-80%)
+    +media(768)
+        padding: 30px
+.popup-close
+    position: absolute
+    right: 10rem
+    top: 10rem
+    font-size: 24rem
+    text-decoration: none
+    color: black
+    z-index: 2
+#popupBlogPost
+    .blog-post
+        padding: 0
+        transform: translate(0,0)
+        opacity: 1
+        transition: all 0s ease
+    .popup-content
+        max-width: 90%
+        +media(1170)
+            max-width: 1150rem
+    
+    .blog-info
+        width: 100%
+    .text-info
+        margin: 0
+        padding: 20rem 0 0 0 
 
 @import components/header
 @import components/main

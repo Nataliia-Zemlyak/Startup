@@ -70,8 +70,8 @@ mixin aboutCard (item)
         figcaption.about-card
             .about-img
                 picture 
-                    source(srcset=item.src + ".webp", tipe="image/webp")
-                    img(src=item.src + ".png", alt=item.alt)
+                    source(srcset=item.src + ".webp", tipe="image/webp", data-src="lazy.jpg")
+                    img(src=item.src + ".png", alt=item.alt, data-src="lazy.jpg")
                 .people-social.flex
                     a.fb(href="#") 
                     a.twitter(href="#") 
@@ -102,7 +102,7 @@ mixin aboutCard (item)
     }
 mixin blogPosts (item)
     .blog-img
-        img(src=item.src, alt=item.alt)
+        img(src=item.src, alt=item.alt, data-src="lazy.jpg")
     .post-info 
         .data-blog-post.flex 
             .data-post 
@@ -114,17 +114,21 @@ mixin blogPosts (item)
                     span Khalil 
                     | Uddin in 
                     span Development!
-        p.text-info #{item.description}
-        a.button-more(href="#") Read more
+        .text-post
+            p.text-info #{item.description}
+            .more-post
+                p.text-info #{item.description}
+                p.text-info #{item.description}
+        a.button-more(href="#popupBlogPost" class="popup-link") Read more
 -
     let brands = [
-        {url: "#", src: "img/deorham.png", alt: "deorham"},
         {url: "#", src: "img/ratings.png", alt: "ratings"},
+        {url: "#", src: "img/deorham.png", alt: "deorham"},
         {url: "#", src: "img/malic.png", alt: "makikMedia"},
         {url: "#", src: "img/bcause.png", alt: "bcause"},
         {url: "#", src: "img/womgify.png", alt: "womgiby"}
     ]
 mixin brand (items)
     for item in items 
-        a(href=item.url) 
+        a.br(href=item.url) 
             img(src=item.src, alt=item.alt)

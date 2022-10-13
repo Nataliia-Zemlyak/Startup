@@ -35,6 +35,8 @@
     justify-content: center
     padding-top: 30rem
     flex-direction: column
+    
+   
     +media(768)
         justify-content: center
         flex-direction: row
@@ -75,6 +77,30 @@
     svg
         margin: auto
         fill: #c0301c
+//anim
+.clean
+    opacity: 0
+    transition: all 1.3s ease
+    transform: translate(-100%, 0%)
+.rock-solid
+    opacity: 0
+    transition: all 1s ease
+    transform: translate(0%, 120%)
+.expert
+    opacity: 0
+    transition: all 1.3s ease
+    transform: translate(100%, 0%)
+
+.clean._active-anim 
+    transform: translate(0%, 0%) 
+    opacity: 1  
+
+.rock-solid._active-anim
+    transform: translate(0%, 0%) 
+    opacity: 1
+.expert._active-anim
+    transform: translate(0%, 0%) 
+    opacity: 1
 //about-us            
 
 .about-us-bcg
@@ -111,7 +137,11 @@
 .description
     flex-direction: column
     align-items: center
+    padding-bottom: 15rem
     p
+        opacity: 0
+        transition: all 3s ease
+        transform: translate(-5%, 0%)
         max-width: 555rem
         font-size: 14rem
         color: #555555
@@ -124,7 +154,11 @@
     +media(768)
         justify-content: center
         flex-direction: row
-        
+//anim  
+.description p._active-anim
+    opacity: 1
+    transform: translate(0%, 0%)
+
 .slider-card
     position: relative
     width: 100%
@@ -134,7 +168,6 @@
 
 .about-card
     position: relative
-    padding-top: 10rem
     padding-bottom: 20rem
     text-align: center
     h3
@@ -151,7 +184,7 @@
         margin: 0
     
 .cards 
-    //transition: all .3s ease
+    transition: all 1.3s cubic-bezier(.44,-0.13,.43,1.13)
     position: absolute
     // width: 100%
     // max-width: 546rem
@@ -161,7 +194,8 @@
         min-height: 256rem
     // +media(530)
     //     width: auto
-        
+.smazl
+    background-color: black        
     
 
 
@@ -190,7 +224,8 @@
         transform: translate(-50%, -50%) rotate(135deg)
         z-index: 3
     
-
+.left
+    left: 0
 .right
     right: 0
     &::before
@@ -414,9 +449,6 @@
     +media(1032)
         flex-direction: row
 
-   
-        
-  
 .blog-startup
     padding-top: 50rem
     padding-bottom: 25rem
@@ -440,7 +472,6 @@
 
 .data-blog-post
     justify-content: flex-start
-    padding-top: 20rem
     +media(1140)
         padding-top: 0
 .data-post
@@ -494,37 +525,48 @@
     
 hr
     background-color: #dddddd
+//anim 
+.blog-post
+    opacity: 0
+    transition: all 1.3s ease
+    transform: translate(100%, 0%)
+.blog-post._active-anim
+    opacity: 1
+    transform: translate(0%, 0%)
+//popup
+.more-post
+    p.text-info
+        padding: 0
+        margin: 0
+        max-height: 0
+        color: transparent
 
 //brands
 .brands
     background-color: #f8f8f8
-    text-align: center
+    padding: 100rem 0
+    
+    
 .title-brands
-    flex-direction: column
-    padding-top: 50rem
-    margin-bottom: 65rem
-    justify-content: center
-    align-items: center
-    a
-        padding-top: 20rem
-        margin: 0 30rem
-        transition: all .5 ease
-        &:hover
-            transform: scale(1.5) 
+    max-width: 920rem
+    margin: 0 auto
            
-    +media(425)
-        flex-direction: row
-        flex-wrap: wrap
-    +media(1024)
-        flex-wrap: nowrap
+.br 
+    position: absolute
+    transition: all 1.3s cubic-bezier(.44,-0.13,.43,1.13)
+    top: 50%
+    transform: translateY(-50%)
+    img
+        object-fit: contain
+        width: 100%
 
 
 .quotes
     margin: 0 auto
     max-width: 760rem
-    i,
+    h4,
     p
-        margin: 0
+        margin: 30rem
         font-size: 18rem
         color: #555555
         font-weight: 400
@@ -568,22 +610,26 @@ hr
     
     +media(768)
         text-align: left
+    &::before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 0
+        background: url(../img/sprite2.png) no-repeat
+        
        
 
 .address
-    position: relative
-    background: url(../img/sprite2.png) no-repeat
-    
-
     h4
-        background-position: -199px -1px
-        width: 12px
-        height: 17px
-        position: absolute
         font-size: 14px
         text-transform: uppercase
         color: #555555
         font-family: "Myriad Pro"
+        &::before
+            background-position: -199px -1px
+            width: 12px
+            height: 17px
+            
     p
         margin: 0
         font-size: 12rem
@@ -592,33 +638,31 @@ hr
         font-family: "Roboto Slab"
     
 .tel-hotline
-    position: relative
-    background: url(../img/sprite2.png) no-repeat
     h4
-        position: absolute
-        background-position: -226px -1px
-
-        width: 12px
-        height: 20px
         font-size: 14rem
         text-transform: uppercase
         color: #555555
         font-family: "Montserrat"
+        &::before
+            background-position: -226px -1px
+            width: 12px
+            height: 20px
+            
     a
         font-size: 12rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
 .mail
-    position: relative
-    background: url(../img/sprite2.png) no-repeat
     h4
-        background-position: -168px -7px
-
         font-size: 14rem
         text-transform: uppercase
         color: #555555
         font-family: "Montserrat"
+        &::before
+            background-position: -168px -7px
+           
+            
         
     .contact-descr
         a

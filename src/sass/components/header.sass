@@ -7,14 +7,22 @@
     +media(768)
         background-size: 130% auto
    
-        
-
+.header-section
+    position: fixed
+    width: 100%
+    z-index: 8
+    right: 0
+    left: 0
+    transition: all .3s ease
+.header-hidden
+    transform: translateY(-100%)
 .top 
     justify-content: space-between
     align-items: center
+    min-height: 70rem
 .logo 
     a
-        padding-left: 30rem
+        
         font-size: 24rem
         color: #ffffff
         font-weight: 700
@@ -32,7 +40,8 @@
     li
         a 
             color: #ffffff
-            padding: 15rem 20rem
+            padding: 15rem 0
+            margin-left: 20rem
             position: relative
             &::before
                 content: ""
@@ -73,8 +82,11 @@
 .welcomStartup._active-anim
     transform: translate(-50%, -50%)
     opacity: 1
+
 .navmenu
+     
     display: none
+    overflow: auto
     +media(1030)
         display: flex
         position: relative   
@@ -82,7 +94,7 @@
         top: 0      
         background: transparent
 .hamburger
-    height: 50px
+    height: 50rem
     display: flex
     flex-direction: column
     justify-content: center
@@ -99,17 +111,16 @@
 .active-burger 
     display: inline-block
     position: absolute
-    flex-direction: column
     text-align: center
-    top: 100px
-    left: 0
+    top: 70rem
     right: 0
-    background: #8f2416
+    left: 0
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))
     background-size: cover
-    
-    z-index: 2
-    +media(700)
-        top: 115px
+    z-index: 5
+
+    // +media(700)
+    //     top: 115px
     ul
         flex-direction: column
         align-items: center
@@ -117,3 +128,7 @@
         a
             display: inline-block
             padding: 20px 30px
+
+
+
+    

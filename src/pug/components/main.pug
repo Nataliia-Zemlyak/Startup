@@ -3,7 +3,7 @@ section.service#services
         h2 Services
         p We offer ipsum dolor sit amet, consetetur sadipscing elitr amet
     .card-service.flex.wrapper
-        figure.clean 
+        figure.clean._anim-start
             .personal.flex 
                 figcaption
                     .svg-figure.flex
@@ -11,7 +11,7 @@ section.service#services
                             path(fill-rule="evenodd" class="a" d="m18.7 11.2c1.9 3.8 3.4 7.8 4.8 11.8q-0.7 0-1.5 0c-2.5 0-5.1 0-7.7-0.1zm-18.7 28.8c1.6 0 3.2-0.1 4.9-0.3 0.3-0.1 0.8-0.3 1.2-0.3 3 0 6 0.6 9 0.6q0.1-0.4 0.1-0.7 0-0.8 0-1.5c-1.5-0.3-5.3-0.3-5.3-2.3 0-1 2.6-7.9 3.3-9.4l11.6 0.1c0.4 1.1 3.7 8.8 3.7 9.7 0 1-1.3 1.2-2 1.3l-3.4 0.8q-0.1 1-0.1 2c3.4-0.1 6.8-0.4 10.1-0.4 3.3 0 6.6 0.4 9.9 0.4 0-0.2 0-0.4 0-0.7 0-0.5-0.1-0.9-0.1-1.4-1.3-0.5-3.6-0.7-4.5-1.3-0.4-0.3-0.7-1.1-0.9-1.5-1.3-2.7-2.2-5.5-3.4-8.2-1.9-4.6-3.7-9.2-5.6-13.8l-5.3-12.5q-0.2-0.3-0.3-0.6h-1.4-1.9l-7.3 18.9-6.1 16c-1.1 2.8-3.7 2.3-6.1 3.1z")
                     h3 Clean Typography
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
-        figure.rock-solid
+        figure.rock-solid._anim-start
             .personal.flex
                 figcaption
                     .svg-figure.flex.triple
@@ -19,7 +19,7 @@ section.service#services
                             path(fill-rule="evenodd" class="a" d="m15.2 34.2c-0.4 0.4-1 0.4-1.4 0l-13.4-13.5c-0.4-0.4-0.4-1 0-1.4l13.4-13.5c0.4-0.4 1-0.4 1.4 0l1.4 1.5c0.4 0.4 0.4 0.9 0 1.3l-11.3 11.4 11.3 11.4c0.4 0.4 0.4 0.9 0 1.3zm18.5-32.4c0.1-0.4-0.1-1-0.6-1.1l-1.8-0.5c-0.5-0.1-1 0.1-1.1 0.6l-10.8 37.5c-0.2 0.4 0.1 1 0.6 1.1l1.8 0.5c0.5 0.2 1-0.1 1.1-0.6zm19 18.8c0.4-0.3 0.4-0.9 0-1.3l-13.5-13.5c-0.3-0.4-0.9-0.4-1.3 0l-1.4 1.4c-0.4 0.4-0.4 1 0 1.4l11.3 11.4-11.3 11.4c-0.4 0.3-0.4 0.9 0 1.3l1.4 1.4c0.4 0.4 1 0.4 1.3 0z")
                     h3 Rock Solid Code
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
-        figure.expert
+        figure.expert._anim-start
             .personal.flex
                 figcaption 
                     .svg-figure.flex
@@ -33,11 +33,10 @@ section.about-us-bcg#about
         h3 About us
         p Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
     .description.flex.wrapper
-        p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
-        p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
-    .about-card.wrapper.slider
-        span.cards-slider.left.sliderBtn
-        .slider-card
+        p._anim-start Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+        p._anim-start Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt ut labore et dolore aliquyam erat, sed diam voluptua. At vero eos et accusam et justo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor et dolore aliquyam erat. Lorem ipsum dolor sit amet. Lorem ipsum eat.
+    .about-card.wrapper.slider#boysSlider
+        .slider-card._anim-start
             .cards
                 +aboutCard (aboutPeople.KhalilUddin)
             .cards
@@ -46,7 +45,6 @@ section.about-us-bcg#about
                 +aboutCard (aboutPeople.ShamimMia)
             .cards
                 +aboutCard (aboutPeople.JohnDoe)
-        span.cards-slider.right.sliderBtn
 
 section.latest-works#works
     h2 Latest Works
@@ -72,27 +70,28 @@ section.latest-works#works
         
 
 
-section.get-in-touch.parallax
+section.get-in-touch.parallax(data-bg="lazy.jpg")
     p Do you like OUR WORK so far? <br> Let's talk about YOUR PROJECT!
     
-    a.btn(href="#" class="white") Get in Touch 
+    a.btn(href="#contact" class="white") Get in Touch 
 
 section.recent-blog#blog
     .wrapper.title-blog
         h2 Recent blog posts
         h5 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
        
-        .blog-startup.blog-post.flex
+        .blog-startup.blog-post.flex._anim-start._anim-no
             +blogPosts (blogPost.startupIdeas)
         <hr>
-        .blog-user.blog-post.flex
+        .blog-user.blog-post.flex._anim-start._anim-no
             +blogPosts (blogPost.userInterface)
 section.brands#clients
     .wrapper 
-        .title-brands.flex
-            +brand (brands)
+        .title-brands.sliderBrands#sliderBrand
+            .slider-card
+                +brand (brands)
         .quotes 
-            i.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
+            h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
             p.name-author John Doe, Google Inc.
 section.form#contact 
     .wrapper.title-form
