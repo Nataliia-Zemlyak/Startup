@@ -463,7 +463,7 @@ infinitySlider(".sliderBrands", sliderProppsBrands)
 const popupLinks = document.querySelectorAll('.popup-link'),
     body = document.querySelector('body'),
     lockPadding = document.querySelectorAll('.lock-padding'),
-    timeout = 800
+    timeout = 300
     
     let unlock = true
     
@@ -536,18 +536,32 @@ function bodyUnLock() {
     setTimeout(function () {
         if (lockPadding.length > 0) {
             for (let i = 0; i < lockPadding.length; i++) {
-                const el = lockPadding[i];
-                el.style.paddingRight = '0px';
+                const el = lockPadding[i]
+                el.style.paddingRight = '0px'
             }
         }
-        body.style.paddingRight = '0px';
-        body.classList.remove('lock');
+        body.style.paddingRight = '0px'
+        body.classList.remove('lock')
     }, timeout);
 
-    unlock = false;
+    unlock = false
     setTimeout(function () {
-        unlock = true;
-    }, timeout);
+        unlock = true
+    }, timeout)
 }
+
+//blog-startup
+const blogReadMore = document.querySelector('.button-more-show')
+const blogStartup = document.querySelector('.blog-startup')
+
+blogReadMore.addEventListener("click", function (e) {
+    e.preventDefault()
+    blogStartup.classList.toggle('active')
+    if (blogStartup.classList.contains('active')) {
+        blogReadMore.innerHTML = "Hide"
+    } else {
+        blogReadMore.innerHTML = "Read more"
+    }
+})
 
 

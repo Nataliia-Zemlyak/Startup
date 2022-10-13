@@ -412,8 +412,10 @@
 .title-blog
     h2
         position: relative
+        margin: 0
         padding-bottom: 20rem
         font-size: 20rem
+        line-height: 24rem
         text-transform: uppercase
         color: #555555
         font-family: "Montserrat"
@@ -429,8 +431,10 @@
             transform: translate(-50%,-50%)
             box-sizing: border-box
     h5
-        padding-top: 15rem
+        margin: 0
+        padding: 28rem 0 70rem
         font-size: 16rem
+        line-height: 24rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
@@ -441,7 +445,6 @@
     cursor: pointer
     transition: all .3s ease
     flex-direction: column
-    align-items: center
     &:hover .sub-name-post span,
     &:hover .name-post p,
     &:hover .button-more
@@ -449,26 +452,28 @@
     +media(1032)
         flex-direction: row
 
-.blog-startup
-    padding-top: 50rem
-    padding-bottom: 25rem
+// .blog-startup
+//     padding-top: 50rem
+//     padding-bottom: 25rem
     
-    
-.blog-user
-    padding-top: 25rem
-    padding-bottom: 100rem
     
 .blog-img
-    max-width: 460rem
+    margin-bottom: 10rem
+    height: 100%
+    width: 100%
+    +media(1025)
+        width: 60%
+        margin-bottom: 0
+        margin-right: 40rem
     img
         width: 100%
         height: 100%
         object-fit: cover
-        // +media(425)
-        //     width: 100%
-
-    +media(1024)
-        margin-right: 40rem
+.post-info 
+    width: 100%
+    padding-top: 25rem
+    +media(1029)
+        padding-top: 0
 
 .data-blog-post
     justify-content: flex-start
@@ -490,7 +495,6 @@
         padding: 9rem 0rem 0rem 3rem
 
 .name-post
-    
     p
         margin: 0
         padding: 7rem
@@ -507,15 +511,17 @@
         font-family: "Roboto Slab"
 
 .text-info
-    max-width: 635rem
-    padding: 20rem 0 34rem 0
-    text-align: left
+    // margin-bottom: 30rem
+    padding: 20rem 0 15rem 0
+    //text-align: left
     font-size: 14rem
+    line-height: 24rem
     color: #555555
     font-weight: 400
     font-family: "Roboto Slab"
 
 .button-more
+    padding-top: 20rem
     font-size: 13px
     letter-spacing: 1px
     text-transform: uppercase
@@ -525,6 +531,8 @@
     
 hr
     background-color: #dddddd
+    margin: 26rem 0
+
 //anim 
 .blog-post
     opacity: 0
@@ -535,16 +543,28 @@ hr
     transform: translate(0%, 0%)
 //popup
 .more-post
+    transition: all .3s ease
     p.text-info
         padding: 0
         margin: 0
         max-height: 0
         color: transparent
+        transition: all .3s ease
+
+.blog-startup.active
+    .more-post
+        transition: all .3s ease
+        p.text-info
+            color: #555
+            padding: 7rem 0
+            max-height: 1000rem
+
 
 //brands
 .brands
     background-color: #f8f8f8
     padding: 100rem 0
+    margin-top: 100rem
     
     
 .title-brands
@@ -574,13 +594,13 @@ hr
         text-align: center
     .name-author
         padding-top: 20rem
-        padding-bottom: 50rem
 
 //form
-
+.form
+    margin-top: 100rem
 .title-form 
     text-align: center
-    padding-top: 50rem
+    //padding-top: 50rem
     h2
         padding-bottom: 30rem
         margin: 0

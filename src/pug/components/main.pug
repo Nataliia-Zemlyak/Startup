@@ -3,7 +3,7 @@ section.service#services
         h2 Services
         p We offer ipsum dolor sit amet, consetetur sadipscing elitr amet
     .card-service.flex.wrapper
-        figure.clean._anim-start
+        figure.clean._anim-start._anim-no
             .personal.flex 
                 figcaption
                     .svg-figure.flex
@@ -11,7 +11,7 @@ section.service#services
                             path(fill-rule="evenodd" class="a" d="m18.7 11.2c1.9 3.8 3.4 7.8 4.8 11.8q-0.7 0-1.5 0c-2.5 0-5.1 0-7.7-0.1zm-18.7 28.8c1.6 0 3.2-0.1 4.9-0.3 0.3-0.1 0.8-0.3 1.2-0.3 3 0 6 0.6 9 0.6q0.1-0.4 0.1-0.7 0-0.8 0-1.5c-1.5-0.3-5.3-0.3-5.3-2.3 0-1 2.6-7.9 3.3-9.4l11.6 0.1c0.4 1.1 3.7 8.8 3.7 9.7 0 1-1.3 1.2-2 1.3l-3.4 0.8q-0.1 1-0.1 2c3.4-0.1 6.8-0.4 10.1-0.4 3.3 0 6.6 0.4 9.9 0.4 0-0.2 0-0.4 0-0.7 0-0.5-0.1-0.9-0.1-1.4-1.3-0.5-3.6-0.7-4.5-1.3-0.4-0.3-0.7-1.1-0.9-1.5-1.3-2.7-2.2-5.5-3.4-8.2-1.9-4.6-3.7-9.2-5.6-13.8l-5.3-12.5q-0.2-0.3-0.3-0.6h-1.4-1.9l-7.3 18.9-6.1 16c-1.1 2.8-3.7 2.3-6.1 3.1z")
                     h3 Clean Typography
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.
-        figure.rock-solid._anim-start
+        figure.rock-solid._anim-start._anim-no
             .personal.flex
                 figcaption
                     .svg-figure.flex.triple
@@ -81,10 +81,10 @@ section.recent-blog#blog
         h5 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
        
         .blog-startup.blog-post.flex._anim-start._anim-no
-            +blogPosts (blogPost.startupIdeas)
+            +blogPosts (blogPost.startupIdeas, "button-more-show")
         <hr>
         .blog-user.blog-post.flex._anim-start._anim-no
-            +blogPosts (blogPost.userInterface)
+            +blogPosts (blogPost.userInterface, "popup-link")
 section.brands#clients
     .wrapper 
         .title-brands.sliderBrands#sliderBrand
