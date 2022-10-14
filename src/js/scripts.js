@@ -247,19 +247,23 @@ if (animItems.length > 0) {
     
  */
 const sliderProps = {
-    arrows: true
+    arrows: true,
+    baseCardWidth: "263rem"
 }
 
 const sliderProppsBrands = {
     gap: 60,
     slideToScrollAll: false,
+    baseCardWidth: "145rem"
     
 }
+window.onresize = function () {
+    infinitySlider(".slider", sliderProps)
+    infinitySlider(".sliderBrands", sliderProppsBrands)
+} 
 
 function infinitySlider(selector, settings) { 
-    window.onresize = function () {
-        infinitySlider(selector, settings)
-    } 
+    
 
     let positionCards = 0,
         slider = document.querySelector(selector),
@@ -272,7 +276,6 @@ function infinitySlider(selector, settings) {
         distanceCards,
         cloneCard,
         heightCards,
-        constCardWidth,
         cardsCount,
         sliderInterval,
         realCardsLenth,
@@ -281,21 +284,28 @@ function infinitySlider(selector, settings) {
             gap: 20, 
             autoplay: true,
             arrows: false,
-            autoplayspeed: 3000
+            autoplayspeed: 3000,
+            baseCardWidth: "100%",
+            transitionslider: "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
         }
+        
 
     slider.querySelectorAll(".clone").forEach(clone => {
         clone.remove()
     })
-    if (localStorage[slider.id]) {
 
+    
+    
+    if ((localStorage[slider.id + "interval"])) {
         clearInterval(localStorage[slider.id + "interval"])
-        constCardWidth = localStorage[slider.id]
-    } else {
-        constCardWidth = cards[0].getBoundingClientRect().width
-        localStorage[slider.id] = constCardWidth
-    }
-    cardsCount = Math.floor(sliderWidth / constCardWidth)
+    } 
+
+    slider.style.position = "relative"
+    sliderCard.style.position = "relative"
+    sliderCard.style.width = "100%"
+    sliderCard.style.overflow = "hidden"
+
+    cardsCount = Math.floor(sliderWidth / parseInt(settings.baseCardWidth))
     // let connect = Object.assign(settings, defoltSettings)
     settings = {
         ...defoltSettings,
@@ -340,16 +350,22 @@ function infinitySlider(selector, settings) {
     }
 
     cards = sliderCard.children
-    if (cloneCard.classList.contains("clone")) {
-        slider.querySelectorAll(".clone").forEach(cloneCard => {
-            setTimeout(() => {
-                cloneCard.style.transition = "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
-            }, 1) 
-        })
-    }
+    // if (cloneCard.classList.contains("clone")) {
+    //     slider.querySelectorAll(".clone").forEach(cloneCard => {
+    //         setTimeout(() => {
+    //             cloneCard.style.transition = "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
+    //         }, 1) 
+    //     })
+    // }
+
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.width = widthCards + 'px'
+        cards[i].style.position = "absolute"
+        setTimeout(() => {
+            cards[i].style.transition = settings.transitionslider 
+        }, 1300);
     }
+
     heightCards = cards[0].getBoundingClientRect().height
     sliderCard.style.height = heightCards + 'px'
 
@@ -387,7 +403,7 @@ function infinitySlider(selector, settings) {
 
     function changeSlide(direction) {
         sliderWidth = sliderCard.getBoundingClientRect().width
-        cardsCount = Math.floor(sliderWidth / constCardWidth)
+        cardsCount = Math.floor(sliderWidth / parseInt(settings.baseCardWidth))
         widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
         cards = sliderCard.children
 
@@ -452,6 +468,8 @@ function infinitySlider(selector, settings) {
 
 infinitySlider(".slider", sliderProps)
 infinitySlider(".sliderBrands", sliderProppsBrands)
+    
+
 
 
 
