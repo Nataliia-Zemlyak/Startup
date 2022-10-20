@@ -49,24 +49,75 @@ section.about-us-bcg#about
 section.latest-works#works
     h2 Latest Works
     .latest-catalogy.flex
-        a(href="#") All      
-        a(href="#") Branding       
-        a(href="#") Design       
-        a(href="#") Development       
-        a(href="#") Strategy
+        a.filter-category(href="#" data-filter="all") All      
+        a.filter-category(href="#" data-filter="branding") Branding       
+        a.filter-category(href="#" data-filter="design") Design       
+        a.filter-category(href="#" data-filter="development") Development       
+        a.filter-category(href="#" data-filter="strategy") Strategy
     .latest-card.wrapper
-        a.one(href="#")  
-            p.hair Hair Dresser
-            p.branding Branding
-        
-        a.two(href="#")
-        a.three(href="#")
-        a.four(href="#")
-        a.five(href="#")
-        a.six(href="#")
-        a.seven(href="#")
-        a.eight(href="#")
-        a.nine(href="#")
+        .worksCards.branding
+            .one
+                img(src="img/1.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a.addToCard(href="#") Add to card 
+        .worksCards.branding
+            .two
+                img(src="img/2.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a.addToCard(href="#") Add to card
+        .worksCards.development
+            .three
+                img(src="img/3.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Development
+                a.addToCard(href="#") Add to card
+        .worksCards.design
+            .four
+                img(src="img/4.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Design
+                a.addToCard(href="#") Add to card
+        .worksCards.branding
+            .five
+                img(src="img/5.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a.addToCard(href="#") Add to card
+        .worksCards.strategy
+            .six
+                img(src="img/6.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Strategy
+                a.addToCard(href="#") Add to card
+        .worksCards.development
+            .seven
+                img(src="img/7.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Development
+                a.addToCard(href="#") Add to card
+        .worksCards.design 
+            .eight
+                img(src="img/8.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Design
+                a.addToCard(href="#") Add to card
+        .worksCards.strategy
+            .nine
+                img(src="img/9.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Strategy
+                a.addToCard(href="#") Add to card
         
 
 section.get-in-touch.parallax(data-bg="lazy.jpg")
@@ -87,18 +138,21 @@ section.recent-blog#blog
 section.brands#clients
     .wrapper 
         .title-brands.sliderBrands#sliderBrand
-            .slider-card
+            .slider-card._anim-start
                 +brand (brands)
-        .quotes 
-            .quote
-                h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
-                p.name-author John Doe, Google Inc.
-            .quote
-                h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
-                p.name-author John Doe, Google.
-            .quote
-                h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
-                p.name-author John Doe.
+        .quotes#sliderQuotes.sliderQuotes
+            .slider-card._anim-start
+                .quote
+                    h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
+                    p.name-author John Doe, Google Inc. 1
+                .quote
+                    h4.text-quotes Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus reiciendis quos possimus odit aperiam assumenda maiores saepe debitis placeat deleniti.
+                    p.name-author John Doe, Google. 2
+                .quote
+                    h4.text-quotes Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum” 
+                    p.name-author John Doe. 3
+
+            
 
 section.form#contact 
     .wrapper.title-form

@@ -302,81 +302,82 @@
         grid-template-columns: repeat(2, 1fr)
     +media(1240)
         grid-template-columns: repeat(3, 1fr)
-
-
-    a 
-        justify-self: center
-        width: 290rem
-        height: 290rem
-        +media(380)
-            width: 360rem
-            height: 320rem
-        +media(1240)
-            justify-self: start
-.hair
-    text-align: center
-    font-size: 18px
-    color: #ffffff
-    font-weight: 400
-    font-family: "Montserrat"
-    opacity: 0
-    &:hover
+.worksCards 
+    position: relative
+    justify-self: center
+    width: 290rem
+    height: 290rem
+    
+    +media(380)
+        width: 360rem
+        height: 320rem
+    +media(1240)
+        justify-self: start
+    &:hover .worksCardsHover
         opacity: 1
-.branding
-    text-align: center
-    font-size: 12px
-    color: #ffffff
-    font-weight: 400
-    font-family: "Roboto Slab"
-    opacity: 0
-    &:hover
-        opacity: 1
+        visibility: visible
+        transition: all .3s ease
 
-.one
-    background: url(../img/1.jpg)
-    // &::before
-    //     position: absolute
-    //     content: "Hair Dresser"
+.worksCardsHover 
+    opacity: 0
+    position: absolute
+    top: 0
+    width: 100%
+    height: 100%
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45))
+    p
+        margin: 8rem
+        text-align: center
+        font-size: 18px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+        opacity: 1
+        z-index: 2
+    .branding
+        text-align: center
+        font-size: 12px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Roboto Slab"
+    .addToCard
+        position: relative
+        margin: 10rem
+        padding: 6rem 35rem 6rem 20rem
+        color: #c0301c
+        background-color: #fff
+        font-size: 14rem
+        letter-spacing: 1rem
+        line-height: 24rem
+        text-transform: uppercase
+        border: 1px solid #fff
+        transition: all .3s ease
+        &::before
+            position: absolute
+            content: ""
+            width: 8rem
+            height: 8rem
+            right: 8%
+            top: 28%
+            border-right: 1px solid #c0301c
+            border-bottom: 1px solid #c0301c
+            transform: rotate(-45deg) translate(-50%)
+        &:hover
+            transform: scale(1.1)
+
+
+.anim-worksCards
+    display: none
+
 
         
-    &:hover
-        opacity: 1
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/1.jpg)
-.two
-    background: url(../img/2.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/2.jpg)
-.three
-    background: url(../img/3.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/3.jpg)
-.four
-    background: url(../img/4.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/4.jpg)
-.five
-    background: url(../img/5.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/5.jpg)
-.six
-    background: url(../img/6.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/6.jpg)
-.seven
-    background: url(../img/7.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/7.jpg)
-.eight
-    background: url(../img/8.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/8.jpg)
-.nine
-    background: url(../img/9.jpg)
-    &:hover
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/9.jpg)
-
- 
     
+        
+        
+        
 .get-in-touch
     text-align: center
     padding: 100rem 0
@@ -555,22 +556,29 @@ hr
     
     
 .title-brands
-    max-width: 920rem
+    max-width: 900rem
     margin: 0 auto
     a 
-        display: inline-flex
-        justify-content: center
-        align-items: center
+        // display: inline-flex
+        // justify-content: center
+        // align-items: center
+        text-align: center
         width: 145rem
         height: 50rem
     img
         object-fit: contain
+        height: 100%
         width: 100%
 
 
 .quotes
     margin: 0 auto
     max-width: 760rem
+   
+.quote
+    opacity: 0
+    visibility: hidden
+    transition: all .5s ease
     h4,
     p
         margin: 30rem
@@ -579,8 +587,41 @@ hr
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
-    .name-author
-        padding-top: 20rem
+    // .name-author
+    //     padding-top: 20rem
+    
+
+.quote.activeFadeSlide
+    opacity: 1
+    visibility: visible
+
+.dot-container 
+    //position: absolute
+    left: 50%
+    transform: translate(-50%)
+    //padding: 20rem
+    
+.dot 
+    height: 14rem
+    width: 14rem
+    margin: 0 6rem
+    display: inline-block
+    background-color: #bbb
+    border-radius: 50%
+    transition: background-color 1s ease
+    transition: all .5s ease
+    cursor: pointer
+
+.dot.activeFadeSlide
+    background-color: #c0301c
+    // &:hover 
+    //     background-color: #c0301c
+
+
+
+
+
+
 
 //form
 .form
