@@ -26,7 +26,7 @@ const sliderProps = {
     arrows: true,
     baseCardWidth: "263rem",
     slideToScrollAll: true,
-    autoplay: true,
+    autoplay: false,
     gap: 20
 
 }
@@ -35,14 +35,15 @@ const sliderProppsBrands = {
     gap: 45,
     slideToScrollAll: true,
     baseCardWidth: "127rem",
-    autoplay: true
+    autoplay: false
 }
 const sliderQuotes = {
-    autoplay: true,
+    autoplay: false,
     autoplayspeed: 4000,
     fadeOut: true,
     dots: true,
-    distanceDots: 40
+    distanceDots: 40,
+    arrows: true
 }
 
 window.onresize = function () {
@@ -62,17 +63,9 @@ function infinitySlider(selector, settings) {
         sliderCard = slider.querySelector(".slider-card"),
         sliderWidth = sliderCard.getBoundingClientRect().width,
         cards = sliderCard.children,
-        widthCards,
-        btnLeft,
-        btnRight,
-        distanceCards,
-        cloneCard,
         heightCards = 0,
-        cardsCount,
-        sliderInterval,
         realCardsLenth = cards.length,
-        maxHeight,
-        sliderDots,
+        widthCards, btnLeft, btnRight, distanceCards, cloneCard, cardsCount, sliderInterval, maxHeight, sliderDots, touchPoint,
         defoltSettings = {
             slideToScrollAll: false,
             dots: false,
@@ -107,8 +100,6 @@ function infinitySlider(selector, settings) {
     } //берем всі аргументи обох об'єктів і сетінгс в кінці щоб перекрити елементи яких не вистачає
 
     cardsCount = Math.floor(sliderWidth / (parseInt(settings.baseCardWidth) + settings.gap))
-    console.log(cardsCount)
-
     distanceCards = settings.gap
     widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
     positionCards = 0 - (distanceCards + widthCards)
@@ -165,7 +156,6 @@ function infinitySlider(selector, settings) {
             }
         }
     }
-
 
     cards = sliderCard.children
 
@@ -237,28 +227,42 @@ function infinitySlider(selector, settings) {
         }
     }
 
-
-
-
     function changeSlide(direction) {
         sliderWidth = sliderCard.getBoundingClientRect().width
         cardsCount = Math.floor(sliderWidth / (parseInt(settings.baseCardWidth) + settings.gap))
         widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
         cards = sliderCard.children
 
+        let numGuote = 0
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].classList.contains("activeFadeSlide")) {
+                numGuote = i
+            }
+        }
         if (direction == "left") {
             if (settings.slideToScrollAll) {
                 for (let i = 0; i < cardsCount; i++) {
                     sliderCard.insertAdjacentElement("afterbegin", cards[cards.length - 1])
                 }
 
+            } else if (settings.fadeOut) {
+                setTimeout(() => cards[numGuote].classList.add("activeFadeSlide"), 1000)
+                setTimeout(() => dot[numGuote].classList.add("activeFadeSlide"), 1000)
+                cards[numGuote].classList.remove("activeFadeSlide")
+                dot[numGuote].classList.remove("activeFadeSlide")
+                if (cards[numGuote - 1]) {
+                    numGuote--
+                } else {
+                    numGuote = cards.length - 1
+                }
+                
             } else {
                 cards[cards.length - 1].remove()
                 let preLastEl = cards[cards.length - 1].cloneNode(true)
                 preLastEl.classList.add("clone")
                 sliderCard.insertAdjacentElement("afterbegin", preLastEl)
                 cards[1].classList.remove("clone")
-
+                
             }
         } else if (direction == "right") {
             if (settings.slideToScrollAll) {
@@ -266,6 +270,17 @@ function infinitySlider(selector, settings) {
                     sliderCard.insertAdjacentElement("beforeend", cards[0])
                 }
 
+            } else if (settings.fadeOut) {
+                setTimeout(() => cards[numGuote].classList.add("activeFadeSlide"), 1000)
+                setTimeout(() => dot[numGuote].classList.add("activeFadeSlide"), 1000)
+                cards[numGuote].classList.remove("activeFadeSlide")
+                dot[numGuote].classList.remove("activeFadeSlide")
+                if (cards[numGuote + 1]) {
+                    numGuote++
+                } else {
+                    numGuote = 0
+                }
+                
             } else {
                 cards[0].remove()
                 let preFirstEl = cards[0].cloneNode(true)
@@ -274,7 +289,9 @@ function infinitySlider(selector, settings) {
                 cards[cards.length - 2].classList.remove("clone")
             }
         }
-        shuffleCard()
+        if (!settings.fadeOut) {
+            shuffleCard()
+        }
     }
 
 
@@ -361,11 +378,34 @@ function infinitySlider(selector, settings) {
         }
     })
 
-
-
     if (settings.autoplay && realCardsLenth > cardsCount) {
         autoPlaySlider()
     }
+
+    function touchSlider (e) {
+        if ((touchPoint + 20) < e.touches[0].pageX ) {
+            changeSlide('left')
+            this.removeEventListener('touchmove', touchSlider)
+
+        } else if ((touchPoint - 20) > e.touches[0].pageX ) {
+            changeSlide('right')
+            this.removeEventListener('touchmove', touchSlider)
+        }
+    }
+
+    slider.addEventListener('touchend', function () {
+        if (settings.autoplay && realCardsLenth > cardsCount) {
+            autoPlaySlider()
+        }
+    })
+    
+    slider.addEventListener('touchstart', function(e) {
+        
+        touchPoint = e.touches[0].pageX
+        this.addEventListener('touchmove', touchSlider)
+        clearInterval(localStorage[slider.id + "interval"])
+    })
+    
 
 
     // window.onscroll = () => {
@@ -383,4 +423,11 @@ function infinitySlider(selector, settings) {
             autoPlaySlider()
         }
     }
+
+
 }
+
+//ontouchmove
+//onwhill
+//onscroll
+
