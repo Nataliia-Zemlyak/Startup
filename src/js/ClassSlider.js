@@ -7,9 +7,9 @@ class InfinitySlider {
         this.positionCards = 0
         this.slider = document.querySelector(selector)
         this.sliderCard = this.slider.querySelector(".slider-card")
-        this.sliderWidth = this.sliderCard.getBoundingClientRect().width
+        this.sliderWidth,
         this.cards = this.sliderCard.children
-        this.heightCards = 0
+        this.heightCards,
         this.realCardsLenth = this.cards.length
         this.widthCards
         this.btnLeft
@@ -22,8 +22,9 @@ class InfinitySlider {
         this.sliderDots
         this.touchPoint
         this.dot
+
     }
-    
+
     static defoltSettings = {
         slideToScrollAll: false,
         dots: false,
@@ -33,19 +34,17 @@ class InfinitySlider {
         autoplay: false,
         arrows: false,
         autoplayspeed: 3000,
-        baseCardWidth: this.sliderWidth + 'px',
-        transitionslider: "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"    
+        baseCardWidth: null,
+        transitionslider: "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
     }
-    
-    
+
+
     init() {
+        this.sliderWidth = this.sliderCard.getBoundingClientRect().width
 
-        if(this.settings.fadeOut) {
-            this.settings.baseCardWidth = this.sliderWidth 
+        if (this.settings.baseCardWidth == null) {
+            this.settings.baseCardWidth = this.sliderWidth + 'px'
         }
-
-        // console.log(this.slider.id)
-        // console.log(this.cards)
 
         this.slider.querySelectorAll(".clone").forEach(clone => {
             clone.remove()
@@ -61,9 +60,11 @@ class InfinitySlider {
         this.sliderCard.style.overflow = "hidden"
 
         this.cardsCount = Math.floor(this.sliderWidth / (parseInt(this.settings.baseCardWidth) + this.settings.gap))
+        if (this.cardsCount == 0) this.cardsCount = 1
         
         this.distanceCards = this.settings.gap
         this.widthCards = (this.sliderWidth - ((this.cardsCount - 1) * this.distanceCards)) / this.cardsCount
+
         this.positionCards = 0 - (this.distanceCards + this.widthCards)
 
         if (this.settings.arrows) this.createArrows()
@@ -96,6 +97,8 @@ class InfinitySlider {
             this.shuffleCard()
         }
         this.cards = this.sliderCard.children
+        
+        this.heightCards = 0
 
         for (let i = 0; i < this.cards.length; i++) {
             this.cards[i].style.width = this.widthCards + 'px'
@@ -105,11 +108,14 @@ class InfinitySlider {
                 this.heightCards = this.maxHeight
             }
 
+            this.cards[i].style.transition = 'none'
             setTimeout(() => {
                 this.cards[i].style.transition = this.settings.transitionslider
-            }, 1300);
+            }, 1);
         }
+
         this.sliderCard.style.height = this.heightCards + 'px'
+    
 
         if (this.settings.dots) {
             this.createDots()
@@ -157,6 +163,7 @@ class InfinitySlider {
             }
         }
 
+        
     }
 
     createArrows() {
@@ -174,7 +181,7 @@ class InfinitySlider {
             this.btnLeft.onclick = () => {
 
                 if (clickAllowed) {
-                    
+
                     this.changeSlide('left')
                     clickAllowed = false
 
@@ -251,8 +258,9 @@ class InfinitySlider {
 
     changeSlide(direction) {
         this.sliderWidth = this.sliderCard.getBoundingClientRect().width
-        
         this.cardsCount = Math.floor(this.sliderWidth / (parseInt(this.settings.baseCardWidth) + this.settings.gap))
+        
+        if (this.cardsCount == 0) this.cardsCount = 1
         this.widthCards = (this.sliderWidth - ((this.cardsCount - 1) * this.distanceCards)) / this.cardsCount
         this.cards = this.sliderCard.children
 
@@ -280,7 +288,7 @@ class InfinitySlider {
             } else {
                 this.cards[this.cards.length - 1].remove()
                 let preLastEl = this.cards[this.cards.length - 1].cloneNode(true)
-                    preLastEl.classList.add("clone")
+                preLastEl.classList.add("clone")
                 this.sliderCard.insertAdjacentElement("afterbegin", preLastEl)
                 this.cards[1].classList.remove("clone")
             }
@@ -304,7 +312,7 @@ class InfinitySlider {
             } else {
                 this.cards[0].remove()
                 let preFirstEl = this.cards[0].cloneNode(true)
-                    preFirstEl.classList.add("clone")
+                preFirstEl.classList.add("clone")
                 this.sliderCard.insertAdjacentElement("beforeend", preFirstEl)
                 this.cards[this.cards.length - 2].classList.remove("clone")
             }
@@ -316,13 +324,13 @@ class InfinitySlider {
 
     autoPlaySlider() {
         clearInterval(localStorage[this.slider.id + "interval"])
-        
+
         if (this.settings.fadeOut) {
             let numGuote = 0
             for (let i = 0; i < this.cards.length; i++) {
                 if (this.cards[i].classList.contains("activeFadeSlide")) {
                     numGuote = i
-                    
+
                 }
             }
             const setActive = (index) => {
@@ -340,7 +348,7 @@ class InfinitySlider {
                 setActive(numGuote)
             }, this.settings.autoplayspeed)
         } else {
-            
+
             this.sliderInterval = setInterval(() => {
                 this.changeSlide("right")
                 console.log("next slide")
@@ -350,7 +358,7 @@ class InfinitySlider {
     }
 
     touchSlider(e) {
-        if ((this.touchPoint + 20) < e.touches[0].pageX) {    
+        if ((this.touchPoint + 20) < e.touches[0].pageX) {
             this.changeSlide('left')
             this.slider.removeEventListener('touchmove', this.touchSlider)
 
@@ -359,9 +367,14 @@ class InfinitySlider {
             this.slider.removeEventListener('touchmove', this.touchSlider)
         }
     }
-
 }
 
+window.onresize = function () {
+    
+    sliderPeople.init()
+    sliderBrands.init()
+    sliderQuotes.init()
+}
 
 let sliderPeople = new InfinitySlider(".slider", {
     arrows: true,
@@ -380,7 +393,6 @@ let sliderBrands = new InfinitySlider(".sliderBrands", {
 let sliderQuotes = new InfinitySlider(".sliderQuotes", {
     autoplay: true,
     autoplayspeed: 4000,
-    baseCardWidth: this.sliderWidth + 'px',
     fadeOut: true,
     dots: true,
     distanceDots: 40,

@@ -111,6 +111,27 @@ function changeTex() {
 
 }
 
+
+
+////ajax
+
+let getStarted = document.querySelector('.getStarted')
+
+getStarted.onclick = function (event) {
+    event.preventDefault()
+
+	let xhr = new XMLHttpRequest()
+	xhr.open('POST', '../docs/php/getStarted.php', true)
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.onload = () => {
+        getStarted.innerHTML = xhr.responseText
+    }
+    xhr.send()
+    
+}
+// let xhr = new XMLHttpRequest()
+
+
 //let svgFigure = document.querySelector()
 // tripleClick.addEventListener('dblclick', function (e){
 //     //if (e.detail === 3) {
