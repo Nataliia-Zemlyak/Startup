@@ -351,7 +351,7 @@ class InfinitySlider {
 
             this.sliderInterval = setInterval(() => {
                 this.changeSlide("right")
-                console.log("next slide")
+                // console.log("next slide")
             }, this.settings.autoplayspeed)
         }
         localStorage[this.slider.id + "interval"] = this.sliderInterval
@@ -380,7 +380,7 @@ let sliderPeople = new InfinitySlider(".slider", {
     arrows: true,
     baseCardWidth: "263rem",
     slideToScrollAll: true,
-    autoplay: true,
+    autoplay: false,
     gap: 20
 })
 let sliderBrands = new InfinitySlider(".sliderBrands", {

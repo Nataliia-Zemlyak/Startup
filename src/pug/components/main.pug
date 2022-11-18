@@ -55,78 +55,69 @@ section.latest-works#works
         a.filter-category(href="#" data-filter="development") Development       
         a.filter-category(href="#" data-filter="strategy") Strategy
     .latest-card.wrapper.shopBlock
-        .worksCards.branding
-            .one
-                img(src="img/1.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Branding
-                p.cost 40 $
-                a.addToCard(href="#") Add to card 
-        .worksCards.branding
-            .two
-                img(src="img/2.jpg", alt="")
-            .worksCardsHover.flex
-                p Dove
-                p.branding Branding
-                p.cost 35 $
-                a.addToCard(href="#") Add to card
-        .worksCards.development
-            .three
-                img(src="img/3.jpg", alt="")
-            .worksCardsHover.flex
-                p Phone
-                p.branding Development
-                p.cost 85 $
-                a.addToCard(href="#") Add to card
-        .worksCards.design
-            .four
-                img(src="img/4.jpg", alt="")
-            .worksCardsHover.flex
-                p Camera
-                p.branding Design
-                p.cost 80 $
-                a.addToCard(href="#") Add to card
-        .worksCards.branding
-            .five
-                img(src="img/5.jpg", alt="")
-            .worksCardsHover.flex
-                p Bike
-                p.branding Branding
-                p.cost 55 $
-                a.addToCard(href="#") Add to card
-        .worksCards.strategy
-            .six
-                img(src="img/6.jpg", alt="")
-            .worksCardsHover.flex
-                p Notebook
-                p.branding Strategy
-                p.cost 20 $
-                a.addToCard(href="#") Add to card
-        .worksCards.development
-            .seven
-                img(src="img/7.jpg", alt="")
-            .worksCardsHover.flex
-                p Glasses
-                p.branding Development
-                p.cost 70 $
-                a.addToCard(href="#") Add to card
-        .worksCards.design 
-            .eight
-                img(src="img/8.jpg", alt="")
-            .worksCardsHover.flex
-                p Office
-                p.branding Design
-                p.cost 45 $
-                a.addToCard(href="#") Add to card
-        .worksCards.strategy
-            .nine
-                img(src="img/9.jpg", alt="")
-            .worksCardsHover.flex
-                p Entertainment
-                p.branding Strategy
-                p.cost 60 $
-                a.addToCard(href="#") Add to card
+        //- .worksCards.branding
+        //-     img(src="img/1.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Hair Dresser
+        //-         p.category Branding
+        //-         p.cost 40 $
+        //-         a.addToCard(href="#") Add to card 
+        //- .worksCards.branding
+        //-     img(src="img/2.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Dove
+        //-         p.category Branding
+        //-         p.cost 35 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.development
+        //-     img(src="img/3.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Phone
+        //-         p.category Development
+        //-         p.cost 85 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.design
+        //-     img(src="img/4.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Camera
+        //-         p.category Design
+        //-         p.cost 80 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.branding
+        //-     img(src="img/5.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Bike
+        //-         p.category Branding
+        //-         p.cost 55 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.strategy
+        //-     img(src="img/6.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Notebook
+        //-         p.category Strategy
+        //-         p.cost 20 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.development
+        //-     img(src="img/7.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Glasses
+        //-         p.category Development
+        //-         p.cost 70 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.design 
+        //-     img(src="img/8.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Office
+        //-         p.category Design
+        //-         p.cost 45 $
+        //-         a.addToCard(href="#") Add to card
+        //- .worksCards.strategy
+        //-     img(src="img/9.jpg", alt="")
+        //-     .worksCardsHover.flex
+        //-         p.name Entertainment
+        //-         p.category Strategy
+        //-         p.cost 60 $
+        //-         a.addToCard(href="#") Add to card
         
 
 section.get-in-touch.parallax(data-bg="lazy.jpg")
@@ -186,16 +177,16 @@ section.form#contact
                         a(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
                     .contact-descr
                         a(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
-            .contact-form 
-                form.flex(action="index.html") 
+            .contact-form
+                form.flex#contactForm(action="index.html" method='post') 
                     .name-mail.flex
-                        input(type="name", name="name", placeholder="Your name")
+                        input(type="name", name="rol", placeholder="Your role")
                         input(type="email", name="email", placeholder="Your E-mail")
                     .phone-number.flex
                         input(type="tel", name="tel", placeholder="Your phone")
                         input(type="text", name="company", placeholder="Company name")
                     .your-message
-                        textarea(name="message", rows="6", placeholder="Write your message") Write your message
+                        textarea(name="message", rows="6", placeholder="Write your message")
                     .send-message.flex
-                        input(type="submit", value="Send message")
+                        input.submitAjax(type="submit", value="Send message")
                         p We’ll contact you as as possible. We don’t reply on Monday.

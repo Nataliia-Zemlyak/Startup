@@ -1,19 +1,17 @@
-//const { init } = require("browser-sync")
 
-//const { compileString } = require("sass");
 
 class Shop {
     constructor (selector){
         this.shopBlock = document.querySelector(selector)
         // this.shop = this.shopBlock.querySelector(".shopBlock")
         this.cardsShop = this.shopBlock.children
+        // this.buttonCard = this.shopBlock.querySelectorAll(".addToCard")
+        console.log();
     }
-    initShop(){
-        for (let i=0; i<this.cardsShop.length; i++) {
-            // console.log(this.cardsShop[i]);
+    
+    
             
-        }
-    }
+        
     addProduct(){
 
     }
@@ -27,7 +25,7 @@ class Shop {
     }
 }
 
-new Shop ('.shopBlock').initShop()
+new Shop ('.shopBlock')
 
 
 
