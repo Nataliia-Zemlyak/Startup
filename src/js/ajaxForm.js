@@ -1,29 +1,29 @@
-function ajaxForm(form, method, requesrURL) {
-    const promise = new Promise((resolve, reject) => {
-        let data = new FormData(form)
-        fetch(requesrURL, {
-            method: method,
-            body: data
-        }).then(response => {
-            if (response.ok) {
-                form.reset()
-                return resolve(response)
-            } else {
-                return reject(response)
-            }
-        })
-    })
-    return promise
-}
-document.querySelector('#contactForm').onsubmit = function (e) { //id форми
-    e.preventDefault()
-    ajaxForm(this, 'post', "../docs/php/getStarted.php") //method, action
-        .then(response => { //може бути 1 then. все що після відправки
-            return response.text()
-        }).then(response => {
-            console.log(response)
-        })
-}
+// function ajaxForm(form, method, requesrURL) {
+//     const promise = new Promise((resolve, reject) => {
+//         let data = new FormData(form)
+//         fetch(requesrURL, {
+//             method: method,
+//             body: data
+//         }).then(response => {
+//             if (response.ok) {
+//                 form.reset()
+//                 return resolve(response)
+//             } else {
+//                 return reject(response)
+//             }
+//         })
+//     })
+//     return promise
+// }
+// document.querySelector('#contactForm').onsubmit = function (e) { //id форми
+//     e.preventDefault()
+//     ajaxForm(this, 'post', "../docs/php/getStarted.php") //method, action
+//         .then(response => { //може бути 1 then. все що після відправки
+//             return response.text()
+//         }).then(response => {
+//             console.log(response)
+//         })
+// }
 
 
 

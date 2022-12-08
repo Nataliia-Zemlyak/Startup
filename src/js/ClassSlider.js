@@ -22,7 +22,6 @@ class InfinitySlider {
         this.sliderDots
         this.touchPoint
         this.dot
-
     }
 
     static defoltSettings = {
@@ -162,8 +161,6 @@ class InfinitySlider {
                 this.autoPlaySlider()
             }
         }
-
-        
     }
 
     createArrows() {
@@ -330,7 +327,6 @@ class InfinitySlider {
             for (let i = 0; i < this.cards.length; i++) {
                 if (this.cards[i].classList.contains("activeFadeSlide")) {
                     numGuote = i
-
                 }
             }
             const setActive = (index) => {
@@ -348,10 +344,8 @@ class InfinitySlider {
                 setActive(numGuote)
             }, this.settings.autoplayspeed)
         } else {
-
             this.sliderInterval = setInterval(() => {
                 this.changeSlide("right")
-                // console.log("next slide")
             }, this.settings.autoplayspeed)
         }
         localStorage[this.slider.id + "interval"] = this.sliderInterval
@@ -370,7 +364,6 @@ class InfinitySlider {
 }
 
 window.onresize = function () {
-    
     sliderPeople.init()
     sliderBrands.init()
     sliderQuotes.init()
@@ -398,8 +391,6 @@ let sliderQuotes = new InfinitySlider(".sliderQuotes", {
     distanceDots: 40,
     arrows: false
 })
-
-
 
 sliderPeople.init()
 sliderBrands.init()

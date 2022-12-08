@@ -6,7 +6,6 @@
     background-size: auto 100% 
     +media(768)
         background-size: 130% auto
-   
 .header-section
     position: fixed
     width: 100%
@@ -22,7 +21,6 @@
     min-height: 70rem
 .logo 
     a
-        
         font-size: 24rem
         color: #ffffff
         font-weight: 700
@@ -31,13 +29,11 @@
         &:hover
             color: #555
             transform: scale(1.5)
-
 .top-menu 
     font-size: 14rem
     line-height: 24rem
     color: #ffffff
     font-family: "Montserrat"
-    
     li
         a 
             color: #ffffff
@@ -83,9 +79,7 @@
 .welcomStartup._active-anim
     transform: translate(-50%, -50%)
     opacity: 1
-
 .navmenu
-     
     display: none
     overflow: auto
     +media(1030)
@@ -108,7 +102,6 @@
         background-color: #fff
         border-radius: 5px
 
-
 .active-burger 
     display: inline-block
     position: absolute
@@ -119,9 +112,6 @@
     background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))
     background-size: cover
     z-index: 5
-
-    // +media(700)
-    //     top: 115px
     ul
         flex-direction: column
         align-items: center
@@ -130,7 +120,7 @@
             display: inline-block
             padding: 20px 30px
 .basket 
-   
+    position: relative
     margin-top: 7rem
     padding: 7rem
     margin-left: 11rem
@@ -144,6 +134,19 @@
         margin-top: 7rem
         padding: 20rem
 
+.basket-counter
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    color: #c0301c
+    font-size: 12rem
+    bottom: 35%
+    right: 20%
+    border-radius: 50%
+    width: 15px
+    height: 15px
+    background-color: #f8f8f8
 #popupBasket
     .popup-basket
         padding: 30rem

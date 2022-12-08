@@ -19,12 +19,11 @@
         &:hover 
             color: #c0301c
             background-color: #fff
-    
-
-
-
-
-        
+         
 =media ($size)
     @media screen and ( min-width: #{$size}px)
+        @content
+        
+=mediaMax ($size)
+    @media screen and ( max-width: #{$size}px)
         @content

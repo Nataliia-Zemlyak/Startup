@@ -2,9 +2,7 @@ const popupLinks = document.querySelectorAll('.popup-link'),
     body = document.querySelector('body'),
     lockPadding = document.querySelectorAll('.lock-padding'),
     timeout = 300
-
 let unlock = true
-
 if (popupLinks.length > 0) {
     for (let i = 0; i < popupLinks.length; i++) {
         const popupLink = popupLinks[i]
@@ -16,7 +14,6 @@ if (popupLinks.length > 0) {
         })
     }
 }
-
 
 const popupCloseIkon = document.querySelectorAll('.close-popup')
 if (popupCloseIkon.length > 0) {
@@ -57,7 +54,6 @@ function popupClose(popupActive, doUnlock = true) {
 
 function bodyLock() {
     const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px'
-
     for (let i = 0; i < lockPadding.length; i++) {
         const el = lockPadding[i]
         el.style.paddingRight = lockPaddingValue

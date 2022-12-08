@@ -30,8 +30,6 @@
         },
     ] 
 
-
-
 mixin menu (items, myclass) 
     for item in items 
         li 
@@ -69,7 +67,7 @@ mixin aboutCard (item)
     figure.fig
         figcaption.about-card
             .about-img
-                picture 
+                picture
                     source(srcset=item.src + ".webp", tipe="image/webp", data-src="lazy.jpg")
                     img(src=item.src + ".png", alt=item.alt, data-src="lazy.jpg")
                 .people-social.flex
@@ -101,7 +99,7 @@ mixin aboutCard (item)
         }
     }
 mixin blogPosts (item, myClass)
-    .blog-img
+    .blog-img.img-zoom
         img(src=item.src, alt=item.alt, data-src="lazy.jpg")
     .post-info 
         .data-blog-post.flex 
