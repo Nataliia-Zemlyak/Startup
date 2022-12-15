@@ -151,7 +151,7 @@ class Shop {
                 <td class="count-product">
                     <div class="flex">
                         <input type="button" value="-" class="minusProduct" data-id="${key}">
-                        <input type="number" value="${value.counter}" class="counter-product">
+                        <input type="number" value="${value.counter}" class="counter-product" data-id="${key}">
                         <input type="button" value="+" class="plusProduct" data-id="${key}">
                     </div>
                 </td>
@@ -164,61 +164,50 @@ class Shop {
         }
         this.totalPriceCard()
         productInBasket.innerHTML = tableBody
-        this.deleteCard()
-        this.plusBut()
-        this.minusBut()
-        // this.counterProduct()
 
-    }
-    // let plusButton = document.querySelectorAll('.plusProduct'),
-    //     minusButton = document.querySelectorAll('.minusProduct'),
-    //     deleteCard = document.querySelectorAll('.deleteCard')
-    plusBut(){
-        let plusButton = document.querySelectorAll('.plusProduct')
+        let plusButton = document.querySelectorAll('.plusProduct'),
+            minusButton = document.querySelectorAll('.minusProduct'),
+            deleteCard = document.querySelectorAll('.deleteCard'),
+            counterProducts = document.querySelectorAll('.counter-product')
+
         plusButton.forEach(e => {
             e.onclick = () => {
                 let cardShop = e.closest('.prodBasket'),
                     cardId = e.getAttribute("data-id"),
                     counterProduct = cardShop.querySelector('.counter-product'),
                     priceCard = cardShop.querySelector('.priceCard');
-    
+
                 this.basketItems[cardId].counter++
                 counterProduct.value = this.basketItems[cardId].counter
-                priceCard.innerHTML = parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)
+                priceCard.innerHTML = `${parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)} $`
                 this.totalPriceCard()
                 localStorage['basketItems'] = JSON.stringify(this.basketItems)
             }
         })
-    }
 
-    minusBut(){
-        let minusButton = document.querySelectorAll('.minusProduct')
         minusButton.forEach(e => {
             e.onclick = () => {
                 let cardShop = e.closest('.prodBasket'),
                     cardId = e.getAttribute("data-id"),
                     counterProduct = cardShop.querySelector('.counter-product'),
                     priceCard = cardShop.querySelector('.priceCard');
-    
+
                 if (this.basketItems[cardId].counter > 1) {
                     this.basketItems[cardId].counter--
                     counterProduct.value = this.basketItems[cardId].counter
                 }
-                priceCard.innerHTML = parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)
+                priceCard.innerHTML = `${parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)} $`
                 this.totalPriceCard()
                 localStorage['basketItems'] = JSON.stringify(this.basketItems)
             }
         })
-    }
 
-    deleteCard(){
-        let deleteCard = document.querySelectorAll('.deleteCard')
         deleteCard.forEach(e => {
             e.onclick = (el) => {
                 el.stopPropagation()
                 let cardShop = e.closest('.prodBasket'),
                     cardId = e.getAttribute("data-id")
-    
+
                 delete this.basketItems[cardId]
                 cardShop.remove()
                 localStorage['basketItems'] = JSON.stringify(this.basketItems)
@@ -226,25 +215,21 @@ class Shop {
                 this.totalPriceCard()
             }
         })
+
+        counterProducts.forEach(e => {
+            e.oninput = () => {
+                let cardShop = e.closest('.prodBasket'),
+                    cardId = e.getAttribute("data-id"),
+                    priceCard = cardShop.querySelector('.priceCard')
+                this.basketItems[cardId].counter = e.value
+                e.value = this.basketItems[cardId].counter
+                priceCard.innerHTML = `${parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)}$`
+                localStorage["basketItems"] = JSON.stringify(this.basketItems)
+                this.showElement()
+                this.totalPriceCard()
+            }
+        })
     }
-
-    // counterProduct() {
-    //     let counterProducts = document.querySelectorAll('.counter-product')
-    //     counterProducts.forEach(element => {
-    //         element.addEventListener('input', () => {
-    //             let cardShop = element.closest('.prodBasket'),
-    //                 cardId = element.getAttribute("data-id"),
-    //                 priceCard = cardShop.querySelector('.priceCard')
-
-    //             this.basketItems[cardId].counter = counterProduct.value
-    //             counterProduct.value = this.basketItems[cardId].counter
-    //             localStorage["basketItems"] = JSON.stringify(this.basketItems)
-    //             priceCard.innerHTML = parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)
-    //             this.showElement()
-    //             this.totalPriceCard()
-    //         })
-    //     })
-    // }
 
     totalPriceCard() {
         let sumPrice = 0
@@ -365,4 +350,3 @@ new Shop().init()
 window.onload = function () {
 
 }
-

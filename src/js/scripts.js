@@ -11,10 +11,14 @@ function menuBackground() {
     let scolTop = window.pageYOffset || document.documentElement.scrollTop
     if (scolTop > lastScrollTop) {
         headerSection.classList.add("header-hidden")
+        
     } else {
         headerSection.classList.remove("header-hidden")
+        menu.classList.remove("active-burger")
     }
+     
     lastScrollTop = scolTop <= 0 ? 0 : scolTop
+    
 
     if (window.pageYOffset > (window.innerHeight / 4)) {
         headerSection.style.backgroundColor = "#c0301c"
@@ -34,7 +38,6 @@ function moveBackground(e) {
 }
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = `center`
-    //element.style.backgroundSize = `130% auto`
     element.addEventListener("mousemove", function (e) {
         moveBackground(e);
     })
@@ -68,14 +71,7 @@ window.onload = function () {
     lastVisit = localStorage.lastVisit
 }
 
-
-
-
-
-
-
 // //tripple click
-
 let tripleClick = document.querySelector(".rock-solid svg"),
     changeText = document.querySelectorAll(".personal h3"),
     timer
