@@ -115,13 +115,13 @@ function zoomPhotoBlogPost(classImg) {
 }
 class Shop {
     constructor() {
-        this.basketItems,
-            this.counter,
-            this.basketCounter = document.querySelector('.basket-counter'),
-            this.tableProduct = document.querySelector('.tableProduct'),
-            this.popupInfo = document.querySelector('.popupInfo'),
-            this.totalPriceProduct = document.querySelector('.totalPriceProduct'),
-            this.totalPrice = document.querySelector('.totalPrice')
+        this.basketItems = {},
+        this.counter,
+        this.basketCounter = document.querySelector('.basket-counter'),
+        this.tableProduct = document.querySelector('.tableProduct'),
+        this.popupInfo = document.querySelector('.popupInfo'),
+        this.totalPriceProduct = document.querySelector('.totalPriceProduct'),
+        this.totalPrice = document.querySelector('.totalPrice')
     }
 
     init() {
@@ -181,18 +181,21 @@ class Shop {
     }
 
     showElement() {
-        if (Object.keys(this.basketItems).length) {
-            this.counter = Object.keys(this.basketItems).length
-            this.basketCounter.innerHTML = this.counter
-            this.basketCounter.style.opacity = "1"
-            this.tableProduct.style.display = "block"
-            this.popupInfo.style.display = "none"
-            this.totalPriceProduct.style.display = "flex"
-        } else {
+        if (Object.keys(this.basketItems).length == 0) {
             this.basketCounter.style.opacity = "0"
             this.tableProduct.style.display = "none"
             this.popupInfo.style.display = "block"
             this.totalPriceProduct.style.display = "none"
+           
+        } else {
+            this.counter = Object.keys(this.basketItems).length
+            this.basketCounter.style.opacity = "1"
+            this.basketCounter.innerText = this.counter
+            this.tableProduct.style.display = "block"
+            this.popupInfo.style.display = "none"
+            this.totalPriceProduct.style.display = "flex"
+
+            
         }
     }
 
@@ -241,7 +244,8 @@ class Shop {
                             "counter": 1
                         }
                         this.counter = Object.keys(this.basketItems).length
-                        this.basketCounter.innerHTML = this.counter
+                        this.basketCounter.style.opacity = '1'
+                        this.basketCounter.innerText = this.counter
                     }
 
                     localStorage["basketItems"] = JSON.stringify(this.basketItems)
@@ -259,22 +263,22 @@ class Shop {
 
         for (const [key, value] of Object.entries(this.basketItems)) {
             tableBody += `
-            <tr class="prodBasket">
-                <td class="photo-product"><img src="${value.img}" alt="${value.alt}"></td>
-                <td>${value.name}</td>
-                <td>${value.cost}</td>
-                <td class="count-product">
-                    <div class="flex">
-                        <input type="button" value="-" class="minusProduct" data-id="${key}">
-                        <input type="number" value="${value.counter}" class="counter-product" data-id="${key}">
-                        <input type="button" value="+" class="plusProduct" data-id="${key}">
-                    </div>
-                </td>
-                <td class="priceCard">
-                    ${parseInt(value.counter) * parseInt(value.cost) + ' $'}</td>
-                <td><a href="#" class='deleteCard' data-id="${key}">+</a></td>
-            </tr>
-        `
+                <tr class="prodBasket">
+                    <td class="photo-product"><img src="${value.img}" alt="${value.alt}"></td>
+                    <td>${value.name}</td>
+                    <td>${value.cost}</td>
+                    <td class="count-product">
+                        <div class="flex">
+                            <input type="button" value="-" class="minusProduct" data-id="${key}">
+                            <input type="number" value="${value.counter}" class="counter-product" data-id="${key}">
+                            <input type="button" value="+" class="plusProduct" data-id="${key}">
+                        </div>
+                    </td>
+                    <td class="priceCard">
+                        ${parseInt(value.counter) * parseInt(value.cost) + ' $'}</td>
+                    <td><a href="#" class='deleteCard' data-id="${key}">+</a></td>
+                </tr>
+            `
             localStorage['basketItems'] = JSON.stringify(this.basketItems)
         }
         this.totalPriceCard()
@@ -296,6 +300,7 @@ class Shop {
                 counterProduct.value = this.basketItems[cardId].counter
                 priceCard.innerHTML = `${parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)} $`
                 this.totalPriceCard()
+                this.showElement()
                 localStorage['basketItems'] = JSON.stringify(this.basketItems)
             }
         })
@@ -313,6 +318,7 @@ class Shop {
                 }
                 priceCard.innerHTML = `${parseInt(this.basketItems[cardId].counter) * parseInt(this.basketItems[cardId].cost)} $`
                 this.totalPriceCard()
+                this.showElement()
                 localStorage['basketItems'] = JSON.stringify(this.basketItems)
             }
         })
